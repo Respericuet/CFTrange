@@ -1,176 +1,3551 @@
-!DOCTYPE html
-html
-head
-    
-    meta http-equiv=content-type content=texthtml; charset=UTF-8 
-    
-        script
-            L_NO_TOUCH = false;
-            L_DISABLE_3D = false;
-        script
-    
-    stylehtml, body {width 100%;height 100%;margin 0;padding 0;}style
-    style#map {positionabsolute;top0;bottom0;right0;left0;}style
-    script src=httpscdn.jsdelivr.netnpmleaflet@1.6.0distleaflet.jsscript
-    script src=httpscode.jquery.comjquery-1.12.4.min.jsscript
-    script src=httpsmaxcdn.bootstrapcdn.combootstrap3.2.0jsbootstrap.min.jsscript
-    script src=httpscdnjs.cloudflare.comajaxlibsLeaflet.awesome-markers2.0.2leaflet.awesome-markers.jsscript
-    link rel=stylesheet href=httpscdn.jsdelivr.netnpmleaflet@1.6.0distleaflet.css
-    link rel=stylesheet href=httpsmaxcdn.bootstrapcdn.combootstrap3.2.0cssbootstrap.min.css
-    link rel=stylesheet href=httpsmaxcdn.bootstrapcdn.combootstrap3.2.0cssbootstrap-theme.min.css
-    link rel=stylesheet href=httpsmaxcdn.bootstrapcdn.comfont-awesome4.6.3cssfont-awesome.min.css
-    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsLeaflet.awesome-markers2.0.2leaflet.awesome-markers.css
-    link rel=stylesheet href=httpscdn.jsdelivr.netghpython-visualizationfoliumfoliumtemplatesleaflet.awesome.rotate.min.css
-    
-            meta name=viewport content=width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no 
-            style
-                #map_85391f0c70539f964be57ce093fe0fb9 {
-                    position relative;
-                    width 100.0%;
-                    height 100.0%;
-                    left 0.0%;
-                    top 0.0%;
+!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e6793dad501d327c80156ad7080b9edd {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
                 }
-            style
-        
-    script src=httpscdn.jsdelivr.netnpmleaflet-search@2.9.7distleaflet-search.min.jsscript
-    link rel=stylesheet href=httpscdn.jsdelivr.netnpmleaflet-search@2.9.7distleaflet-search.min.css
-    script src=httpscdnjs.cloudflare.comajaxlibsleaflet-minimap3.6.1Control.MiniMap.jsscript
-    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsleaflet-minimap3.6.1Control.MiniMap.css
-    script src=httpscdnjs.cloudflare.comajaxlibsleaflet.fullscreen1.4.2Control.FullScreen.min.jsscript
-    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsleaflet.fullscreen1.4.2Control.FullScreen.min.css
-head
-body
-    
-    
-            div class=folium-map id=map_85391f0c70539f964be57ce093fe0fb9 div
-        
-body
-script
-    
-    
-            var map_85391f0c70539f964be57ce093fe0fb9 = L.map(
-                map_85391f0c70539f964be57ce093fe0fb9,
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+
+</head>
+<body>
+
+
+<div style="position: fixed;
+     bottom: 30px; left: 30px; width: 200px; height: 120px;
+     background-color: white; border:2px solid grey; z-index:9999; font-size:14px;
+     padding: 10px;">
+<b>Legend</b><br>
+<span style="color:red;">&#9679;</span> Tech (40‑mi radius)<br>
+<span style="color:green;">&#9679;</span> Existing Customer<br>
+<span style="color:purple;">&#9679;</span> Proposed Customer
+</div>
+
+            <div class="folium-map" id="map_e6793dad501d327c80156ad7080b9edd" ></div>
+
+</body>
+<script>
+
+
+            var map_e6793dad501d327c80156ad7080b9edd = L.map(
+                "map_e6793dad501d327c80156ad7080b9edd",
                 {
-                    center [40.79657195121951, -82.53174451219512],
-                    crs L.CRS.EPSG3857,
-                    zoom 6,
-                    zoomControl true,
-                    preferCanvas false,
+                    center: [39.5, -98.35],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
                 }
             );
-            L.control.scale().addTo(map_85391f0c70539f964be57ce093fe0fb9);
 
-            
 
-        
-    
-            var tile_layer_263173be8b0f5a42ed084975ccc5f885 = L.tileLayer(
-                https{s}.tile.openstreetmap.org{z}{x}{y}.png,
-                {attribution Data by u0026copy; u003ca href=httpopenstreetmap.orgu003eOpenStreetMapu003cau003e, under u003ca href=httpwww.openstreetmap.orgcopyrightu003eODbLu003cau003e., detectRetina false, maxNativeZoom 18, maxZoom 18, minZoom 0, noWrap false, opacity 1, subdomains abc, tms false}
-            ).addTo(map_85391f0c70539f964be57ce093fe0fb9);
-        
-    
-            var feature_group_be5e72a0a91bbd85ad715f885f43b5bb = L.featureGroup(
-                {}
-            ).addTo(map_85391f0c70539f964be57ce093fe0fb9);
-        
- ...existing code... (all original circle_, marker_ and feature_group_ definitions for city clusters remain unchanged) 
- The original file content continues here unmodified until just before layer control creation.
- ...existing code...
 
-            map_85391f0c70539f964be57ce093fe0fb9.fitBounds(
-                [[25.9303, -97.5544], [43.6156, -78.8739]],
-                {padding [20, 20]}
+
+
+            var tile_layer_0afe9b63259720391bff0c374eeda83b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
             );
 
 
- ----- REPLACEMENT BLOCK clear original depot circles and add 6 people (geocoded) -----
-             remove any existing layers in the depots feature group (this clears the original 12 depot circlesmarkers)
-            feature_group_be5e72a0a91bbd85ad715f885f43b5bb.clearLayers();
-
-             Geocoded people locations
-            var people = [
-                { name Kyle Rodecap, address 9763 Ashpacher RD, Defiance, OH, lat 41.2819, lon -84.3628, color red },
-                { name Corey Johnson, address 12344 Franchester Road, West Salem, OH, lat 40.9717, lon -82.1097, color orange },
-                { name Chris Hall, address 444 Oregon Rd W, Adrian, MI, lat 41.9006, lon -84.0431, color green },
-                { name Ricardo Espericueta, address 228 San luis Drive, Brownsville, TX, lat 25.9303, lon -97.4844, color blue },
-                { name Brogan Harding, address 1133 CR 128, Fremont, OH, lat 41.3489, lon -83.1172, color cadetblue },
-                { name Andrew Rodriguez, address 23107 Farm to Market 506, Santa Rosa, TX, lat 26.3, lon -97.8, color darkpurple }
-            ];
-
-            var radiusMeters = 64373.6;  ~40 miles
-
-            people.forEach(function(p){
-                var circle = L.circle([p.lat, p.lon], {
-                    bubblingMouseEvents true,
-                    color p.color,
-                    fill true,
-                    fillColor p.color,
-                    fillOpacity 0.08,
-                    weight 3,
-                    radius radiusMeters,
-                    stroke true
-                }).addTo(feature_group_be5e72a0a91bbd85ad715f885f43b5bb);
-
-                circle.bindPopup(L.popup({maxWidth 100%}).setContent(
-                    `div style=font-familyArial;font-size13px;40-mile radius of ${p.name}br${p.address}div`
-                ));
-
-                circle.bindTooltip(`div40-mile ${p.name}div`, {sticky true});
-
-                var marker = L.marker([p.lat, p.lon]).addTo(feature_group_be5e72a0a91bbd85ad715f885f43b5bb);
-                marker.setIcon(L.AwesomeMarkers.icon({
-                    extraClassesfa-rotate-0,
-                    iconuser,
-                    iconColorwhite,
-                    markerColorgray,
-                    prefixglyphicon
-                }));
-
-                marker.bindPopup(L.popup({maxWidth460}).setContent(
-                    `div style=width420px; max-height300px; overflowauto; font-familyArial; font-size12px;
-                         h4 style=margin4px 0;Assigned to ${p.name}h4
-                         p style=margin0;${p.address}p
-                     div`
-                ));
-
-                marker.bindTooltip(`divPerson ${p.name} (click for info)div`, {sticky true});
-            });
- ----- end replacement block -----
+            tile_layer_0afe9b63259720391bff0c374eeda83b.addTo(map_e6793dad501d327c80156ad7080b9edd);
 
 
- ...existing code... (layer control creation follows; keep other overlays unchanged but rename depots label) 
-            var layer_control_4db0c936f64df84d4a992ef1af7029d5 = {
-                base_layers  {
-                    openstreetmap  tile_layer_263173be8b0f5a42ed084975ccc5f885,
-                },
-                overlays   {
-                    People (40-mile radius)  feature_group_be5e72a0a91bbd85ad715f885f43b5bb,
-                    Cluster Youngstown, Ohio  feature_group_9e10014faad85b51ad0bb99eea9762d3,
-                    Cluster Brownsville, Texas  feature_group_b1b2c550c4ad843e0f81721c1db3fcfa,
-                    Cluster Chesterfield Township, Michigan  feature_group_e1dde5f4a79e032fa2b798e7a45131a6,
-                    Cluster Dayton, Ohio  feature_group_b47d5c3eefdb26872b8c4da0d303bcfb,
-                    Cluster Dover, Ohio  feature_group_677b911ad15feabfec631729c4e97678,
-                    Cluster Indiana, Pennsylvania  feature_group_ac087fc4d726e111633d8ef99f8d3a6b,
-                    Cluster Mansfield, Ohio  feature_group_75af6a7e2e1d41f3318b1da23873da9a,
-                    Cluster Medina, Ohio  feature_group_a9f5fddb6a7d84cfbd22a7a152f47e3d,
-                    Cluster Painesville, Ohio  feature_group_8158fce6fe5b531537f23fa31f705595,
-                    Cluster Perrysburg, Ohio  feature_group_188e7f17da52b303ff2acd2ecd11a629,
-                    Cluster Port Clinton, Ohio  feature_group_662564bf0c703b77a03952d27a613d69,
-                    Cluster Saginaw, Michigan  feature_group_74f5f6231b5232bbb57ffcb100cf1b79,
-                    Cluster Uniontown, Pennsylvania  feature_group_75f27d469d2ed8f278473d829b919ba4,
-                    Outside 40 mi only  feature_group_d5dc8b51c9d37299d5e995576fbe5aaf,
-                    Search Index  geo_json_8779c3f8f2bcad7da3d5e5ef6112466b,
-                },
-            };
-            L.control.layers(
-                layer_control_4db0c936f64df84d4a992ef1af7029d5.base_layers,
-                layer_control_4db0c936f64df84d4a992ef1af7029d5.overlays,
-                {autoZIndex true, collapsed false, position topright}
-            ).addTo(map_85391f0c70539f964be57ce093fe0fb9);
-            geo_json_8779c3f8f2bcad7da3d5e5ef6112466b.remove();
-        
-script
-html
+            var circle_marker_ed650ba55f9b5f8442e8ef9712288226 = L.circleMarker(
+                [41.276, -84.366],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_32cbdac0f5d68ff871639bc62c04b8a1 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_b505136b08b51803ad31b714a4c3381e = $(`<div id="html_b505136b08b51803ad31b714a4c3381e" style="width: 100.0%; height: 100.0%;">Tech: Defiance, OH</div>`)[0];
+                popup_32cbdac0f5d68ff871639bc62c04b8a1.setContent(html_b505136b08b51803ad31b714a4c3381e);
+
+
+
+        circle_marker_ed650ba55f9b5f8442e8ef9712288226.bindPopup(popup_32cbdac0f5d68ff871639bc62c04b8a1)
+        ;
+
+
+
+
+            var circle_771e05386c72cb7f8f0da9a7f64853b4 = L.circle(
+                [41.276, -84.366],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64360, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+            var circle_marker_05556e8aa6dc1492d3aebdacb27d8fdd = L.circleMarker(
+                [40.95, -82.05],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_62871916a5e563db5b70ce6384f121fa = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_3987cab7c6583f2a3b1439e28586a2ba = $(`<div id="html_3987cab7c6583f2a3b1439e28586a2ba" style="width: 100.0%; height: 100.0%;">Tech: West Salem, OH</div>`)[0];
+                popup_62871916a5e563db5b70ce6384f121fa.setContent(html_3987cab7c6583f2a3b1439e28586a2ba);
+
+
+
+        circle_marker_05556e8aa6dc1492d3aebdacb27d8fdd.bindPopup(popup_62871916a5e563db5b70ce6384f121fa)
+        ;
+
+
+
+
+            var circle_53e583203d37d105b9fea2b365ee4f7a = L.circle(
+                [40.95, -82.05],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64360, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+            var circle_marker_04f3e7b5d987377aa468da9a00630dac = L.circleMarker(
+                [41.9, -84.05],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_e382e7b301161f2811456b6e5e13896e = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_70f823668dfef47a6879cfc00cb124b9 = $(`<div id="html_70f823668dfef47a6879cfc00cb124b9" style="width: 100.0%; height: 100.0%;">Tech: Adrian, MI</div>`)[0];
+                popup_e382e7b301161f2811456b6e5e13896e.setContent(html_70f823668dfef47a6879cfc00cb124b9);
+
+
+
+        circle_marker_04f3e7b5d987377aa468da9a00630dac.bindPopup(popup_e382e7b301161f2811456b6e5e13896e)
+        ;
+
+
+
+
+            var circle_dbdf43619ebaa110ea41b5e28c65e41c = L.circle(
+                [41.9, -84.05],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64360, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+            var circle_marker_182408eb672285bcae0b9820e4048aa8 = L.circleMarker(
+                [25.93, -97.48],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_91d0839d2c9be69757218da80997a255 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_63a6fc70e8047095b4e2f4c342560830 = $(`<div id="html_63a6fc70e8047095b4e2f4c342560830" style="width: 100.0%; height: 100.0%;">Tech: Brownsville, TX</div>`)[0];
+                popup_91d0839d2c9be69757218da80997a255.setContent(html_63a6fc70e8047095b4e2f4c342560830);
+
+
+
+        circle_marker_182408eb672285bcae0b9820e4048aa8.bindPopup(popup_91d0839d2c9be69757218da80997a255)
+        ;
+
+
+
+
+            var circle_82044e70f884d239678fd83c068a75f9 = L.circle(
+                [25.93, -97.48],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64360, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+            var circle_marker_0b24739ce2298d83dc3cf748fc5050a0 = L.circleMarker(
+                [41.35, -83.12],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_e9353bce78b8ba72f2461e186a1f2f74 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_1455163ab4f6f67dc96f8b319393d1ff = $(`<div id="html_1455163ab4f6f67dc96f8b319393d1ff" style="width: 100.0%; height: 100.0%;">Tech: Fremont, OH</div>`)[0];
+                popup_e9353bce78b8ba72f2461e186a1f2f74.setContent(html_1455163ab4f6f67dc96f8b319393d1ff);
+
+
+
+        circle_marker_0b24739ce2298d83dc3cf748fc5050a0.bindPopup(popup_e9353bce78b8ba72f2461e186a1f2f74)
+        ;
+
+
+
+
+            var circle_bf23c93fc9a90dcc0f6a555837c65181 = L.circle(
+                [41.35, -83.12],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64360, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+            var circle_marker_fd152f1380c3d5658fc4478c9fe18645 = L.circleMarker(
+                [26.3, -97.83],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_1b4c6824f27325683a6700b996ae5381 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_c6f299f58b5e89e4ac05a28795024428 = $(`<div id="html_c6f299f58b5e89e4ac05a28795024428" style="width: 100.0%; height: 100.0%;">Tech: Santa Rosa, TX</div>`)[0];
+                popup_1b4c6824f27325683a6700b996ae5381.setContent(html_c6f299f58b5e89e4ac05a28795024428);
+
+
+
+        circle_marker_fd152f1380c3d5658fc4478c9fe18645.bindPopup(popup_1b4c6824f27325683a6700b996ae5381)
+        ;
+
+
+
+
+            var circle_fb41970b8676d02fdcf2c6728f491b7b = L.circle(
+                [26.3, -97.83],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 64360, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+            var circle_marker_491c046749baa96c5e386b1b40c243df = L.circleMarker(
+                [40.7919, -80.1411],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_cf72e180f8297e264dfa85669465d0d4 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_1fefcf87fa7a5068f5424f3fe4c26f0a = $(`<div id="html_1fefcf87fa7a5068f5424f3fe4c26f0a" style="width: 100.0%; height: 100.0%;">Zelienopole, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (100.6 mi)</div>`)[0];
+                popup_cf72e180f8297e264dfa85669465d0d4.setContent(html_1fefcf87fa7a5068f5424f3fe4c26f0a);
+
+
+
+        circle_marker_491c046749baa96c5e386b1b40c243df.bindPopup(popup_cf72e180f8297e264dfa85669465d0d4)
+        ;
+
+
+
+
+            circle_marker_491c046749baa96c5e386b1b40c243df.bindTooltip(
+                `<div>
+                     Zelienopole, PA → West Salem, OH (100.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_440d99f8a6ce39fd0e9b5b4b9206c428 = L.circleMarker(
+                [40.8611, -80.2847],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_36885be57672465b11cbeec8d4c2e4bd = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_6518e8520a3fd3fbddcb933c8c075a98 = $(`<div id="html_6518e8520a3fd3fbddcb933c8c075a98" style="width: 100.0%; height: 100.0%;">Ellwood City, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (92.6 mi)</div>`)[0];
+                popup_36885be57672465b11cbeec8d4c2e4bd.setContent(html_6518e8520a3fd3fbddcb933c8c075a98);
+
+
+
+        circle_marker_440d99f8a6ce39fd0e9b5b4b9206c428.bindPopup(popup_36885be57672465b11cbeec8d4c2e4bd)
+        ;
+
+
+
+
+            circle_marker_440d99f8a6ce39fd0e9b5b4b9206c428.bindTooltip(
+                `<div>
+                     Ellwood City, PA → West Salem, OH (92.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_d28fc3f71264a390f415397009fdf7ec = L.circleMarker(
+                [42.98027778, -82.4375],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_44a3ace8078b2d7cabe8638cc96490ff = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_d7f76b5b9e34509c9696d8f1a1aae31b = $(`<div id="html_d7f76b5b9e34509c9696d8f1a1aae31b" style="width: 100.0%; height: 100.0%;">Port Huron, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (111.2 mi)</div>`)[0];
+                popup_44a3ace8078b2d7cabe8638cc96490ff.setContent(html_d7f76b5b9e34509c9696d8f1a1aae31b);
+
+
+
+        circle_marker_d28fc3f71264a390f415397009fdf7ec.bindPopup(popup_44a3ace8078b2d7cabe8638cc96490ff)
+        ;
+
+
+
+
+            circle_marker_d28fc3f71264a390f415397009fdf7ec.bindTooltip(
+                `<div>
+                     Port Huron, MI → Adrian, MI (111.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_3066c0ebdb04369c1a02539a5facacb9 = L.circleMarker(
+                [42.6659, -82.9252],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_6ac4b7ddd5a63862f170fc037f5b55e1 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_aa26c333a04314e3a4fa0f71588f1ff2 = $(`<div id="html_aa26c333a04314e3a4fa0f71588f1ff2" style="width: 100.0%; height: 100.0%;">Macomb Twp, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (78.2 mi)</div>`)[0];
+                popup_6ac4b7ddd5a63862f170fc037f5b55e1.setContent(html_aa26c333a04314e3a4fa0f71588f1ff2);
+
+
+
+        circle_marker_3066c0ebdb04369c1a02539a5facacb9.bindPopup(popup_6ac4b7ddd5a63862f170fc037f5b55e1)
+        ;
+
+
+
+
+            circle_marker_3066c0ebdb04369c1a02539a5facacb9.bindTooltip(
+                `<div>
+                     Macomb Twp, MI → Adrian, MI (78.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_4904bb7b31853ccfcc1cb8b1dd5c0fad = L.circleMarker(
+                [40.7919, -80.1411],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_554a4d9c66c8bac8586772a1e6994ee6 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_c73bce72bf08f2459e7acfa73b244d23 = $(`<div id="html_c73bce72bf08f2459e7acfa73b244d23" style="width: 100.0%; height: 100.0%;">Zelienopole, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (100.6 mi)</div>`)[0];
+                popup_554a4d9c66c8bac8586772a1e6994ee6.setContent(html_c73bce72bf08f2459e7acfa73b244d23);
+
+
+
+        circle_marker_4904bb7b31853ccfcc1cb8b1dd5c0fad.bindPopup(popup_554a4d9c66c8bac8586772a1e6994ee6)
+        ;
+
+
+
+
+            circle_marker_4904bb7b31853ccfcc1cb8b1dd5c0fad.bindTooltip(
+                `<div>
+                     Zelienopole, PA → West Salem, OH (100.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_8bc6d6c45803b49c680c7a4da4bdee9e = L.circleMarker(
+                [40.8611, -80.2847],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_a86749272ea54028a5fdc922db0c8dc0 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_5845eece085c80b05366a06f95a58ac4 = $(`<div id="html_5845eece085c80b05366a06f95a58ac4" style="width: 100.0%; height: 100.0%;">Ellwood City, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (92.6 mi)</div>`)[0];
+                popup_a86749272ea54028a5fdc922db0c8dc0.setContent(html_5845eece085c80b05366a06f95a58ac4);
+
+
+
+        circle_marker_8bc6d6c45803b49c680c7a4da4bdee9e.bindPopup(popup_a86749272ea54028a5fdc922db0c8dc0)
+        ;
+
+
+
+
+            circle_marker_8bc6d6c45803b49c680c7a4da4bdee9e.bindTooltip(
+                `<div>
+                     Ellwood City, PA → West Salem, OH (92.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_b331dd0c2202dbfbc0a389f248e68710 = L.circleMarker(
+                [40.9972, -80.3444],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_307dfe63bc4a0192ecd7f1f94eff330c = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_00e1fca8744875fc932090ea589efebe = $(`<div id="html_00e1fca8744875fc932090ea589efebe" style="width: 100.0%; height: 100.0%;">New Castle, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (89.3 mi)</div>`)[0];
+                popup_307dfe63bc4a0192ecd7f1f94eff330c.setContent(html_00e1fca8744875fc932090ea589efebe);
+
+
+
+        circle_marker_b331dd0c2202dbfbc0a389f248e68710.bindPopup(popup_307dfe63bc4a0192ecd7f1f94eff330c)
+        ;
+
+
+
+
+            circle_marker_b331dd0c2202dbfbc0a389f248e68710.bindTooltip(
+                `<div>
+                     New Castle, PA → West Salem, OH (89.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_b639697a94486c17cbba25918872761e = L.circleMarker(
+                [40.9008, -80.8528],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_c36a310d3786f5210f571e154b7d2bf8 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_1fca798327502448c37deb7ec1c99b11 = $(`<div id="html_1fca798327502448c37deb7ec1c99b11" style="width: 100.0%; height: 100.0%;">Salem, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (62.8 mi)</div>`)[0];
+                popup_c36a310d3786f5210f571e154b7d2bf8.setContent(html_1fca798327502448c37deb7ec1c99b11);
+
+
+
+        circle_marker_b639697a94486c17cbba25918872761e.bindPopup(popup_c36a310d3786f5210f571e154b7d2bf8)
+        ;
+
+
+
+
+            circle_marker_b639697a94486c17cbba25918872761e.bindTooltip(
+                `<div>
+                     Salem, OH → West Salem, OH (62.8 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_f362183c5e0c61082e6f66836b2b76ef = L.circleMarker(
+                [40.8772, -80.7569],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_b39b096335e13bd967a4492b41e39d86 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0a1ae2d734f79a69aff8f4acd33b45cf = $(`<div id="html_0a1ae2d734f79a69aff8f4acd33b45cf" style="width: 100.0%; height: 100.0%;">Leetonia, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (67.9 mi)</div>`)[0];
+                popup_b39b096335e13bd967a4492b41e39d86.setContent(html_0a1ae2d734f79a69aff8f4acd33b45cf);
+
+
+
+        circle_marker_f362183c5e0c61082e6f66836b2b76ef.bindPopup(popup_b39b096335e13bd967a4492b41e39d86)
+        ;
+
+
+
+
+            circle_marker_f362183c5e0c61082e6f66836b2b76ef.bindTooltip(
+                `<div>
+                     Leetonia, OH → West Salem, OH (67.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_91c58dd1a9d8b4d5efd4a61d785ba117 = L.circleMarker(
+                [40.8856, -80.6883],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_60b741e9598ef992a56a6636e8126d97 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_65ce815f9f559b5279cb54a700cbdbec = $(`<div id="html_65ce815f9f559b5279cb54a700cbdbec" style="width: 100.0%; height: 100.0%;">Columbiana, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (71.4 mi)</div>`)[0];
+                popup_60b741e9598ef992a56a6636e8126d97.setContent(html_65ce815f9f559b5279cb54a700cbdbec);
+
+
+
+        circle_marker_91c58dd1a9d8b4d5efd4a61d785ba117.bindPopup(popup_60b741e9598ef992a56a6636e8126d97)
+        ;
+
+
+
+
+            circle_marker_91c58dd1a9d8b4d5efd4a61d785ba117.bindTooltip(
+                `<div>
+                     Columbiana, OH → West Salem, OH (71.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_d30051a02b7c33507236417303efafbe = L.circleMarker(
+                [41.2254, -80.4821],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_240f1de7e4fc62cabefa6d6fcac0c743 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_907d358eed3ba5bfb52d5ffd8fc3a56e = $(`<div id="html_907d358eed3ba5bfb52d5ffd8fc3a56e" style="width: 100.0%; height: 100.0%;">Shenango Valley, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (84.0 mi)</div>`)[0];
+                popup_240f1de7e4fc62cabefa6d6fcac0c743.setContent(html_907d358eed3ba5bfb52d5ffd8fc3a56e);
+
+
+
+        circle_marker_d30051a02b7c33507236417303efafbe.bindPopup(popup_240f1de7e4fc62cabefa6d6fcac0c743)
+        ;
+
+
+
+
+            circle_marker_d30051a02b7c33507236417303efafbe.bindTooltip(
+                `<div>
+                     Shenango Valley, PA → West Salem, OH (84.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_1397a69bbf21ef5e42050ab24ea31090 = L.circleMarker(
+                [41.2075, -80.53639],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_38ed85cd5850609188de47e7c419a6d0 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_60b606fb85eb34d2de8a3ac7fe965208 = $(`<div id="html_60b606fb85eb34d2de8a3ac7fe965208" style="width: 100.0%; height: 100.0%;">Masury, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (81.0 mi)</div>`)[0];
+                popup_38ed85cd5850609188de47e7c419a6d0.setContent(html_60b606fb85eb34d2de8a3ac7fe965208);
+
+
+
+        circle_marker_1397a69bbf21ef5e42050ab24ea31090.bindPopup(popup_38ed85cd5850609188de47e7c419a6d0)
+        ;
+
+
+
+
+            circle_marker_1397a69bbf21ef5e42050ab24ea31090.bindTooltip(
+                `<div>
+                     Masury, OH → West Salem, OH (81.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_71bb4007187d70eed761a37c30b0445f = L.circleMarker(
+                [41.18527778, -80.75722222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_06aeeb67cec78651ec39c911e4ba02b9 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_011820d0f67c36b4b057bd43caa51c88 = $(`<div id="html_011820d0f67c36b4b057bd43caa51c88" style="width: 100.0%; height: 100.0%;">Niles, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (69.4 mi)</div>`)[0];
+                popup_06aeeb67cec78651ec39c911e4ba02b9.setContent(html_011820d0f67c36b4b057bd43caa51c88);
+
+
+
+        circle_marker_71bb4007187d70eed761a37c30b0445f.bindPopup(popup_06aeeb67cec78651ec39c911e4ba02b9)
+        ;
+
+
+
+
+            circle_marker_71bb4007187d70eed761a37c30b0445f.bindTooltip(
+                `<div>
+                     Niles, OH → West Salem, OH (69.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_38b68e51050ef530bc8632c57342da66 = L.circleMarker(
+                [41.1586, -80.6956],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_d1d371b7c15c1ace0053ce060e80e812 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_f8d2f35917fdac2cbfeaa8d1cbc52c40 = $(`<div id="html_f8d2f35917fdac2cbfeaa8d1cbc52c40" style="width: 100.0%; height: 100.0%;">Girard, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (72.2 mi)</div>`)[0];
+                popup_d1d371b7c15c1ace0053ce060e80e812.setContent(html_f8d2f35917fdac2cbfeaa8d1cbc52c40);
+
+
+
+        circle_marker_38b68e51050ef530bc8632c57342da66.bindPopup(popup_d1d371b7c15c1ace0053ce060e80e812)
+        ;
+
+
+
+
+            circle_marker_38b68e51050ef530bc8632c57342da66.bindTooltip(
+                `<div>
+                     Girard, OH → West Salem, OH (72.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_185c51d42b1049dc1c2338d83aef5b26 = L.circleMarker(
+                [41.09638889, -80.64916667],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_f7f280bf5b162552cd903f9b881e88c6 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_bb8d1b9ec831fcd39eac940c936f0fe2 = $(`<div id="html_bb8d1b9ec831fcd39eac940c936f0fe2" style="width: 100.0%; height: 100.0%;">Boardman, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (73.9 mi)</div>`)[0];
+                popup_f7f280bf5b162552cd903f9b881e88c6.setContent(html_bb8d1b9ec831fcd39eac940c936f0fe2);
+
+
+
+        circle_marker_185c51d42b1049dc1c2338d83aef5b26.bindPopup(popup_f7f280bf5b162552cd903f9b881e88c6)
+        ;
+
+
+
+
+            circle_marker_185c51d42b1049dc1c2338d83aef5b26.bindTooltip(
+                `<div>
+                     Boardman, OH → West Salem, OH (73.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_534901e8487daf1488fc45fe4a23b5d2 = L.circleMarker(
+                [25.93027778, -97.48444444],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_23d12b344b65329d0d07078763ae4967 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_594701d9255092ed1ea1acece33de447 = $(`<div id="html_594701d9255092ed1ea1acece33de447" style="width: 100.0%; height: 100.0%;">Brownsville, TX<br>Inside 40 mi<br>Nearest Tech: Brownsville, TX (0.3 mi)</div>`)[0];
+                popup_23d12b344b65329d0d07078763ae4967.setContent(html_594701d9255092ed1ea1acece33de447);
+
+
+
+        circle_marker_534901e8487daf1488fc45fe4a23b5d2.bindPopup(popup_23d12b344b65329d0d07078763ae4967)
+        ;
+
+
+
+
+            circle_marker_534901e8487daf1488fc45fe4a23b5d2.bindTooltip(
+                `<div>
+                     Brownsville, TX → Brownsville, TX (0.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_56a36a97ce0ec289e6ba7ea3e6a65249 = L.circleMarker(
+                [42.98027778, -82.4375],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_96fda201336d4fac8247dd97c01d73b7 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_549d0245d691e0592bfbfcd004b88c2b = $(`<div id="html_549d0245d691e0592bfbfcd004b88c2b" style="width: 100.0%; height: 100.0%;">Port Huron, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (111.2 mi)</div>`)[0];
+                popup_96fda201336d4fac8247dd97c01d73b7.setContent(html_549d0245d691e0592bfbfcd004b88c2b);
+
+
+
+        circle_marker_56a36a97ce0ec289e6ba7ea3e6a65249.bindPopup(popup_96fda201336d4fac8247dd97c01d73b7)
+        ;
+
+
+
+
+            circle_marker_56a36a97ce0ec289e6ba7ea3e6a65249.bindTooltip(
+                `<div>
+                     Port Huron, MI → Adrian, MI (111.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_7430fc203f121218a29bf66547135960 = L.circleMarker(
+                [42.6659, -82.9252],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_4031895ddc3e6869561b293a0d3809a3 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_27ed2d5438b9bee7aa1828714a3bfabc = $(`<div id="html_27ed2d5438b9bee7aa1828714a3bfabc" style="width: 100.0%; height: 100.0%;">Macomb Twp, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (78.2 mi)</div>`)[0];
+                popup_4031895ddc3e6869561b293a0d3809a3.setContent(html_27ed2d5438b9bee7aa1828714a3bfabc);
+
+
+
+        circle_marker_7430fc203f121218a29bf66547135960.bindPopup(popup_4031895ddc3e6869561b293a0d3809a3)
+        ;
+
+
+
+
+            circle_marker_7430fc203f121218a29bf66547135960.bindTooltip(
+                `<div>
+                     Macomb Twp, MI → Adrian, MI (78.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_91729412b2c038b9846ace143ef124b6 = L.circleMarker(
+                [42.68111111, -82.73694444],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_9f9f68875c7cfc5140f0642f5ca75fd6 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_b4716a2c4cec7cb4c004847e5e9fa239 = $(`<div id="html_b4716a2c4cec7cb4c004847e5e9fa239" style="width: 100.0%; height: 100.0%;">New Baltimore, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (86.2 mi)</div>`)[0];
+                popup_9f9f68875c7cfc5140f0642f5ca75fd6.setContent(html_b4716a2c4cec7cb4c004847e5e9fa239);
+
+
+
+        circle_marker_91729412b2c038b9846ace143ef124b6.bindPopup(popup_9f9f68875c7cfc5140f0642f5ca75fd6)
+        ;
+
+
+
+
+            circle_marker_91729412b2c038b9846ace143ef124b6.bindTooltip(
+                `<div>
+                     New Baltimore, MI → Adrian, MI (86.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_8f743695eeb416dc52bbc07ba2145e45 = L.circleMarker(
+                [42.6835, -82.794],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_ca91802535bc4a22fb020eba50d28b3a = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_4f4026845643e8a72d850e2937205777 = $(`<div id="html_4f4026845643e8a72d850e2937205777" style="width: 100.0%; height: 100.0%;">Chesterfield Twp, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (84.1 mi)</div>`)[0];
+                popup_ca91802535bc4a22fb020eba50d28b3a.setContent(html_4f4026845643e8a72d850e2937205777);
+
+
+
+        circle_marker_8f743695eeb416dc52bbc07ba2145e45.bindPopup(popup_ca91802535bc4a22fb020eba50d28b3a)
+        ;
+
+
+
+
+            circle_marker_8f743695eeb416dc52bbc07ba2145e45.bindTooltip(
+                `<div>
+                     Chesterfield Twp, MI → Adrian, MI (84.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_4578cd6241455f6a9140ccb248126909 = L.circleMarker(
+                [39.76666667, -84.2],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_bda196ea7bab07c191c551d671a3e6ed = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_2536b804c15fe66155a1d62e10a0ab01 = $(`<div id="html_2536b804c15fe66155a1d62e10a0ab01" style="width: 100.0%; height: 100.0%;">Dayton, OH<br>Outside 40 mi<br>Nearest Tech: Defiance, OH (104.5 mi)</div>`)[0];
+                popup_bda196ea7bab07c191c551d671a3e6ed.setContent(html_2536b804c15fe66155a1d62e10a0ab01);
+
+
+
+        circle_marker_4578cd6241455f6a9140ccb248126909.bindPopup(popup_bda196ea7bab07c191c551d671a3e6ed)
+        ;
+
+
+
+
+            circle_marker_4578cd6241455f6a9140ccb248126909.bindTooltip(
+                `<div>
+                     Dayton, OH → Defiance, OH (104.5 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_c7d6aafcd6b6850f000c25b99a227ec8 = L.circleMarker(
+                [40.875, -81.40111111],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_de0a544cf1dfd5017b5eab683198aac5 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_4f3bf66c9e0efd9f81a647d211f263fc = $(`<div id="html_4f3bf66c9e0efd9f81a647d211f263fc" style="width: 100.0%; height: 100.0%;">North Canton, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (34.4 mi)</div>`)[0];
+                popup_de0a544cf1dfd5017b5eab683198aac5.setContent(html_4f3bf66c9e0efd9f81a647d211f263fc);
+
+
+
+        circle_marker_c7d6aafcd6b6850f000c25b99a227ec8.bindPopup(popup_de0a544cf1dfd5017b5eab683198aac5)
+        ;
+
+
+
+
+            circle_marker_c7d6aafcd6b6850f000c25b99a227ec8.bindTooltip(
+                `<div>
+                     North Canton, OH → West Salem, OH (34.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_45a423fa115fca8a95a22d2752344f58 = L.circleMarker(
+                [40.8372, -81.2592],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_68a3d7440270466701963432d75d2a36 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_40c7468f65aa16928d5412f4b6264ab6 = $(`<div id="html_40c7468f65aa16928d5412f4b6264ab6" style="width: 100.0%; height: 100.0%;">Louisville, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (42.1 mi)</div>`)[0];
+                popup_68a3d7440270466701963432d75d2a36.setContent(html_40c7468f65aa16928d5412f4b6264ab6);
+
+
+
+        circle_marker_45a423fa115fca8a95a22d2752344f58.bindPopup(popup_68a3d7440270466701963432d75d2a36)
+        ;
+
+
+
+
+            circle_marker_45a423fa115fca8a95a22d2752344f58.bindTooltip(
+                `<div>
+                     Louisville, OH → West Salem, OH (42.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_b09bce13042941f2248acec8b6232036 = L.circleMarker(
+                [40.5972, -81.5294],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_47aa208830d9069a9fd211fef345c0fa = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_f8d683d9c2fa4637d7ccfc851d99b61a = $(`<div id="html_f8d683d9c2fa4637d7ccfc851d99b61a" style="width: 100.0%; height: 100.0%;">Strasburg, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (36.6 mi)</div>`)[0];
+                popup_47aa208830d9069a9fd211fef345c0fa.setContent(html_f8d683d9c2fa4637d7ccfc851d99b61a);
+
+
+
+        circle_marker_b09bce13042941f2248acec8b6232036.bindPopup(popup_47aa208830d9069a9fd211fef345c0fa)
+        ;
+
+
+
+
+            circle_marker_b09bce13042941f2248acec8b6232036.bindTooltip(
+                `<div>
+                     Strasburg, OH → West Salem, OH (36.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_43498942d88cc1ae531234e72fc518e9 = L.circleMarker(
+                [40.5267, -81.4778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_680d18412108b87f20117dd5616173c7 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_4d360c1d597edcd93c6b93029660399b = $(`<div id="html_4d360c1d597edcd93c6b93029660399b" style="width: 100.0%; height: 100.0%;">Dover, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (41.9 mi)</div>`)[0];
+                popup_680d18412108b87f20117dd5616173c7.setContent(html_4d360c1d597edcd93c6b93029660399b);
+
+
+
+        circle_marker_43498942d88cc1ae531234e72fc518e9.bindPopup(popup_680d18412108b87f20117dd5616173c7)
+        ;
+
+
+
+
+            circle_marker_43498942d88cc1ae531234e72fc518e9.bindTooltip(
+                `<div>
+                     Dover, OH → West Salem, OH (41.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_5f25340bc231554fdb62488a228a5a8c = L.circleMarker(
+                [40.54138889, -79.78222222],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_aa71904cdf19043ad1cfa33c1f3e4cf1 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_b580ae32bcf1d2d0a86c781e2b1cb014 = $(`<div id="html_b580ae32bcf1d2d0a86c781e2b1cb014" style="width: 100.0%; height: 100.0%;">Springdale, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (122.3 mi)</div>`)[0];
+                popup_aa71904cdf19043ad1cfa33c1f3e4cf1.setContent(html_b580ae32bcf1d2d0a86c781e2b1cb014);
+
+
+
+        circle_marker_5f25340bc231554fdb62488a228a5a8c.bindPopup(popup_aa71904cdf19043ad1cfa33c1f3e4cf1)
+        ;
+
+
+
+
+            circle_marker_5f25340bc231554fdb62488a228a5a8c.bindTooltip(
+                `<div>
+                     Springdale, PA → West Salem, OH (122.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_e387864f3100c5a4a8fbf0f8805b4a86 = L.circleMarker(
+                [40.5775, -79.76444444],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_8c90265a576c9956f9c516f592221efe = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_2539e3f4ce34b4936c326838ec3c54aa = $(`<div id="html_2539e3f4ce34b4936c326838ec3c54aa" style="width: 100.0%; height: 100.0%;">Arnold, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (122.6 mi)</div>`)[0];
+                popup_8c90265a576c9956f9c516f592221efe.setContent(html_2539e3f4ce34b4936c326838ec3c54aa);
+
+
+
+        circle_marker_e387864f3100c5a4a8fbf0f8805b4a86.bindPopup(popup_8c90265a576c9956f9c516f592221efe)
+        ;
+
+
+
+
+            circle_marker_e387864f3100c5a4a8fbf0f8805b4a86.bindTooltip(
+                `<div>
+                     Arnold, PA → West Salem, OH (122.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_e5460c6046c4bb23cf5578ec9602bd61 = L.circleMarker(
+                [40.56833333, -79.75833333],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_503ea51507f293b74565b0e8f08fe498 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_97beebb0b4e5ed9d42a06c39cc1b0873 = $(`<div id="html_97beebb0b4e5ed9d42a06c39cc1b0873" style="width: 100.0%; height: 100.0%;">New Kensington, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (123.1 mi)</div>`)[0];
+                popup_503ea51507f293b74565b0e8f08fe498.setContent(html_97beebb0b4e5ed9d42a06c39cc1b0873);
+
+
+
+        circle_marker_e5460c6046c4bb23cf5578ec9602bd61.bindPopup(popup_503ea51507f293b74565b0e8f08fe498)
+        ;
+
+
+
+
+            circle_marker_e5460c6046c4bb23cf5578ec9602bd61.bindTooltip(
+                `<div>
+                     New Kensington, PA → West Salem, OH (123.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_72f7d2808816eff43fac732f4c389841 = L.circleMarker(
+                [40.5839, -79.7219],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_e0ac9a852c775d3aed1fdd795a130ad5 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_ed796189c548cbf0becfcaa1272aa55e = $(`<div id="html_ed796189c548cbf0becfcaa1272aa55e" style="width: 100.0%; height: 100.0%;">Lower Burell, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (124.7 mi)</div>`)[0];
+                popup_e0ac9a852c775d3aed1fdd795a130ad5.setContent(html_ed796189c548cbf0becfcaa1272aa55e);
+
+
+
+        circle_marker_72f7d2808816eff43fac732f4c389841.bindPopup(popup_e0ac9a852c775d3aed1fdd795a130ad5)
+        ;
+
+
+
+
+            circle_marker_72f7d2808816eff43fac732f4c389841.bindTooltip(
+                `<div>
+                     Lower Burell, PA → West Salem, OH (124.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_8d89d9364391c994522d75d53a9c9992 = L.circleMarker(
+                [40.2944, -78.8739],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_b0e3b10786ef2657a8253b5d4f7d7431 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_b497f16343436bb22433554bcc0a5d11 = $(`<div id="html_b497f16343436bb22433554bcc0a5d11" style="width: 100.0%; height: 100.0%;">Geistown, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (173.0 mi)</div>`)[0];
+                popup_b0e3b10786ef2657a8253b5d4f7d7431.setContent(html_b497f16343436bb22433554bcc0a5d11);
+
+
+
+        circle_marker_8d89d9364391c994522d75d53a9c9992.bindPopup(popup_b0e3b10786ef2657a8253b5d4f7d7431)
+        ;
+
+
+
+
+            circle_marker_8d89d9364391c994522d75d53a9c9992.bindTooltip(
+                `<div>
+                     Geistown, PA → West Salem, OH (173.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_b6eec2400c702d95f87c5185595b90d3 = L.circleMarker(
+                [40.2872973, -78.8894685],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_9d00e15683d6bc2ba8087c309e7ac902 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_1b5eb6e605cf6a7bf0afed38d102828e = $(`<div id="html_1b5eb6e605cf6a7bf0afed38d102828e" style="width: 100.0%; height: 100.0%;">Belmont, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (172.3 mi)</div>`)[0];
+                popup_9d00e15683d6bc2ba8087c309e7ac902.setContent(html_1b5eb6e605cf6a7bf0afed38d102828e);
+
+
+
+        circle_marker_b6eec2400c702d95f87c5185595b90d3.bindPopup(popup_9d00e15683d6bc2ba8087c309e7ac902)
+        ;
+
+
+
+
+            circle_marker_b6eec2400c702d95f87c5185595b90d3.bindTooltip(
+                `<div>
+                     Belmont, PA → West Salem, OH (172.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_4f7431fa3be17abe1254e229749d0ae8 = L.circleMarker(
+                [40.29916667, -78.94],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_fd79b3e1c32126b4336e7c97300f548b = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_09d9a2ca1b2f5ef3f39ed7cdaa3369de = $(`<div id="html_09d9a2ca1b2f5ef3f39ed7cdaa3369de" style="width: 100.0%; height: 100.0%;">Elim, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (169.6 mi)</div>`)[0];
+                popup_fd79b3e1c32126b4336e7c97300f548b.setContent(html_09d9a2ca1b2f5ef3f39ed7cdaa3369de);
+
+
+
+        circle_marker_4f7431fa3be17abe1254e229749d0ae8.bindPopup(popup_fd79b3e1c32126b4336e7c97300f548b)
+        ;
+
+
+
+
+            circle_marker_4f7431fa3be17abe1254e229749d0ae8.bindTooltip(
+                `<div>
+                     Elim, PA → West Salem, OH (169.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_ffbe4efea3a6f5aaa229f96cc59639d2 = L.circleMarker(
+                [40.3108, -78.9339],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_2c0f34c25562f37b74553a793e99ba47 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_59ed5a882859e86b177ce97dc4afa5f9 = $(`<div id="html_59ed5a882859e86b177ce97dc4afa5f9" style="width: 100.0%; height: 100.0%;">Southmont, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (169.6 mi)</div>`)[0];
+                popup_2c0f34c25562f37b74553a793e99ba47.setContent(html_59ed5a882859e86b177ce97dc4afa5f9);
+
+
+
+        circle_marker_ffbe4efea3a6f5aaa229f96cc59639d2.bindPopup(popup_2c0f34c25562f37b74553a793e99ba47)
+        ;
+
+
+
+
+            circle_marker_ffbe4efea3a6f5aaa229f96cc59639d2.bindTooltip(
+                `<div>
+                     Southmont, PA → West Salem, OH (169.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_c6c6fcf1d08eed1e4326c770afb4b1be = L.circleMarker(
+                [40.3228, -78.9208],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_b87cb3e12211addfbbf6f0f4a2e806df = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_4848398ea947ab970476fb64eb673dad = $(`<div id="html_4848398ea947ab970476fb64eb673dad" style="width: 100.0%; height: 100.0%;">Johnstown, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (170.1 mi)</div>`)[0];
+                popup_b87cb3e12211addfbbf6f0f4a2e806df.setContent(html_4848398ea947ab970476fb64eb673dad);
+
+
+
+        circle_marker_c6c6fcf1d08eed1e4326c770afb4b1be.bindPopup(popup_b87cb3e12211addfbbf6f0f4a2e806df)
+        ;
+
+
+
+
+            circle_marker_c6c6fcf1d08eed1e4326c770afb4b1be.bindTooltip(
+                `<div>
+                     Johnstown, PA → West Salem, OH (170.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_c8ca558c7f68dd548022a3a1d5a9f394 = L.circleMarker(
+                [40.3186, -78.9489],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_c6a66e4c53ed4f621f7676aca3d55ef2 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_9a14d76dc1d9454e9216abbf1ee011ae = $(`<div id="html_9a14d76dc1d9454e9216abbf1ee011ae" style="width: 100.0%; height: 100.0%;">Westmont, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (168.7 mi)</div>`)[0];
+                popup_c6a66e4c53ed4f621f7676aca3d55ef2.setContent(html_9a14d76dc1d9454e9216abbf1ee011ae);
+
+
+
+        circle_marker_c8ca558c7f68dd548022a3a1d5a9f394.bindPopup(popup_c6a66e4c53ed4f621f7676aca3d55ef2)
+        ;
+
+
+
+
+            circle_marker_c8ca558c7f68dd548022a3a1d5a9f394.bindTooltip(
+                `<div>
+                     Westmont, PA → West Salem, OH (168.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_3064aefce22dfdc1306e6b9fb3b8a1f3 = L.circleMarker(
+                [40.6334, -79.1478],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_8e0e4b4cf8793b5830426ad9ed35cd05 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_42174acc44ce523f0d525f1eaaae86c8 = $(`<div id="html_42174acc44ce523f0d525f1eaaae86c8" style="width: 100.0%; height: 100.0%;">White Twp, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (153.8 mi)</div>`)[0];
+                popup_8e0e4b4cf8793b5830426ad9ed35cd05.setContent(html_42174acc44ce523f0d525f1eaaae86c8);
+
+
+
+        circle_marker_3064aefce22dfdc1306e6b9fb3b8a1f3.bindPopup(popup_8e0e4b4cf8793b5830426ad9ed35cd05)
+        ;
+
+
+
+
+            circle_marker_3064aefce22dfdc1306e6b9fb3b8a1f3.bindTooltip(
+                `<div>
+                     White Twp, PA → West Salem, OH (153.8 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_62685ed9547e93fb57576a7f8298bda2 = L.circleMarker(
+                [40.6211, -79.155],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_8e00e63c7f5e85bc40fc7ab26630b099 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_08ea55d3e9993e8f951df12075765407 = $(`<div id="html_08ea55d3e9993e8f951df12075765407" style="width: 100.0%; height: 100.0%;">Indiana, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (153.5 mi)</div>`)[0];
+                popup_8e00e63c7f5e85bc40fc7ab26630b099.setContent(html_08ea55d3e9993e8f951df12075765407);
+
+
+
+        circle_marker_62685ed9547e93fb57576a7f8298bda2.bindPopup(popup_8e00e63c7f5e85bc40fc7ab26630b099)
+        ;
+
+
+
+
+            circle_marker_62685ed9547e93fb57576a7f8298bda2.bindTooltip(
+                `<div>
+                     Indiana, PA → West Salem, OH (153.5 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_f7d9eedb00dcae364bf1804bce99e867 = L.circleMarker(
+                [40.8297, -83.2792],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_7ea10ca84f511345f5669bfa38e197d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_6ed439b0df9736c39fed81e59ce55ba6 = $(`<div id="html_6ed439b0df9736c39fed81e59ce55ba6" style="width: 100.0%; height: 100.0%;">Upper Sandusky, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (36.9 mi)</div>`)[0];
+                popup_7ea10ca84f511345f5669bfa38e197d6.setContent(html_6ed439b0df9736c39fed81e59ce55ba6);
+
+
+
+        circle_marker_f7d9eedb00dcae364bf1804bce99e867.bindPopup(popup_7ea10ca84f511345f5669bfa38e197d6)
+        ;
+
+
+
+
+            circle_marker_f7d9eedb00dcae364bf1804bce99e867.bindTooltip(
+                `<div>
+                     Upper Sandusky, OH → Fremont, OH (36.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_4aff91216b8c2c0c3a3fdae0af87b6b9 = L.circleMarker(
+                [40.8061, -82.9731],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_97aa586b23dddaafe5b11d630c9f2294 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_89543dbd746a1b32faed4a46a26b3376 = $(`<div id="html_89543dbd746a1b32faed4a46a26b3376" style="width: 100.0%; height: 100.0%;">Bucyrus, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (38.3 mi)</div>`)[0];
+                popup_97aa586b23dddaafe5b11d630c9f2294.setContent(html_89543dbd746a1b32faed4a46a26b3376);
+
+
+
+        circle_marker_4aff91216b8c2c0c3a3fdae0af87b6b9.bindPopup(popup_97aa586b23dddaafe5b11d630c9f2294)
+        ;
+
+
+
+
+            circle_marker_4aff91216b8c2c0c3a3fdae0af87b6b9.bindTooltip(
+                `<div>
+                     Bucyrus, OH → Fremont, OH (38.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_4cc38ef1cad76dfeb916c4531b6e4a60 = L.circleMarker(
+                [40.86694444, -82.31527778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_833a0f67940fb772a6ecb9dc89d9ea7b = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_561290d695b8e39134bb99d2a4c64b08 = $(`<div id="html_561290d695b8e39134bb99d2a4c64b08" style="width: 100.0%; height: 100.0%;">Ashland, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (15.0 mi)</div>`)[0];
+                popup_833a0f67940fb772a6ecb9dc89d9ea7b.setContent(html_561290d695b8e39134bb99d2a4c64b08);
+
+
+
+        circle_marker_4cc38ef1cad76dfeb916c4531b6e4a60.bindPopup(popup_833a0f67940fb772a6ecb9dc89d9ea7b)
+        ;
+
+
+
+
+            circle_marker_4cc38ef1cad76dfeb916c4531b6e4a60.bindTooltip(
+                `<div>
+                     Ashland, OH → West Salem, OH (15.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_2db7a79bbfc2e8a9fe54c4e0d57d11da = L.circleMarker(
+                [40.7847, -82.7403],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_4dc6a5fd03740f1da5fda260e027b941 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_21de648de285f21b0323e2ec4106bce6 = $(`<div id="html_21de648de285f21b0323e2ec4106bce6" style="width: 100.0%; height: 100.0%;">Crestline, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (37.9 mi)</div>`)[0];
+                popup_4dc6a5fd03740f1da5fda260e027b941.setContent(html_21de648de285f21b0323e2ec4106bce6);
+
+
+
+        circle_marker_2db7a79bbfc2e8a9fe54c4e0d57d11da.bindPopup(popup_4dc6a5fd03740f1da5fda260e027b941)
+        ;
+
+
+
+
+            circle_marker_2db7a79bbfc2e8a9fe54c4e0d57d11da.bindTooltip(
+                `<div>
+                     Crestline, OH → West Salem, OH (37.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_502a74297c93cdb7f1d7fe51ea9c2c96 = L.circleMarker(
+                [40.754856, -82.522855],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_76f27a231b59900413eeda5f50233928 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_f47ae8f79c4f30105726578971b5d239 = $(`<div id="html_f47ae8f79c4f30105726578971b5d239" style="width: 100.0%; height: 100.0%;">Mansfield, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (28.2 mi)</div>`)[0];
+                popup_76f27a231b59900413eeda5f50233928.setContent(html_f47ae8f79c4f30105726578971b5d239);
+
+
+
+        circle_marker_502a74297c93cdb7f1d7fe51ea9c2c96.bindPopup(popup_76f27a231b59900413eeda5f50233928)
+        ;
+
+
+
+
+            circle_marker_502a74297c93cdb7f1d7fe51ea9c2c96.bindTooltip(
+                `<div>
+                     Mansfield, OH → West Salem, OH (28.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_2cab8af83b00a493247197231ea4099f = L.circleMarker(
+                [41.1506, -81.3611],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_68798e1a2b5c76ea1e933241c6ca6100 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_ab9f61e52a66e2202e30d20bfab390d3 = $(`<div id="html_ab9f61e52a66e2202e30d20bfab390d3" style="width: 100.0%; height: 100.0%;">Kent, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (38.6 mi)</div>`)[0];
+                popup_68798e1a2b5c76ea1e933241c6ca6100.setContent(html_ab9f61e52a66e2202e30d20bfab390d3);
+
+
+
+        circle_marker_2cab8af83b00a493247197231ea4099f.bindPopup(popup_68798e1a2b5c76ea1e933241c6ca6100)
+        ;
+
+
+
+
+            circle_marker_2cab8af83b00a493247197231ea4099f.bindTooltip(
+                `<div>
+                     Kent, OH → West Salem, OH (38.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_68ab706bcb36b9df0641771c3ebb574b = L.circleMarker(
+                [41.324167, -81.452778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_5770bb6200aaa24a921085bd3688c08b = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0cd96fe4a8af8d510797ae27d8334518 = $(`<div id="html_0cd96fe4a8af8d510797ae27d8334518" style="width: 100.0%; height: 100.0%;">Twinsburg, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (40.5 mi)</div>`)[0];
+                popup_5770bb6200aaa24a921085bd3688c08b.setContent(html_0cd96fe4a8af8d510797ae27d8334518);
+
+
+
+        circle_marker_68ab706bcb36b9df0641771c3ebb574b.bindPopup(popup_5770bb6200aaa24a921085bd3688c08b)
+        ;
+
+
+
+
+            circle_marker_68ab706bcb36b9df0641771c3ebb574b.bindTooltip(
+                `<div>
+                     Twinsburg, OH → West Salem, OH (40.5 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_01015cb88ccf4f590fd03cd188944872 = L.circleMarker(
+                [41.0969, -81.4242],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_5ad096b867c0a0bece7f7f7c8209d49d = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0e621df4bcd4520b4a69c90edacfb09a = $(`<div id="html_0e621df4bcd4520b4a69c90edacfb09a" style="width: 100.0%; height: 100.0%;">Tallmadge, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (34.2 mi)</div>`)[0];
+                popup_5ad096b867c0a0bece7f7f7c8209d49d.setContent(html_0e621df4bcd4520b4a69c90edacfb09a);
+
+
+
+        circle_marker_01015cb88ccf4f590fd03cd188944872.bindPopup(popup_5ad096b867c0a0bece7f7f7c8209d49d)
+        ;
+
+
+
+
+            circle_marker_01015cb88ccf4f590fd03cd188944872.bindTooltip(
+                `<div>
+                     Tallmadge, OH → West Salem, OH (34.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_6b663c032590dae7a5a4657fc12ba1c5 = L.circleMarker(
+                [40.8092, -81.9372],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_8ce97d4272349eec4de113c1e74d142c = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_77e6e9f945bb9c3b8fff3be33d22df5f = $(`<div id="html_77e6e9f945bb9c3b8fff3be33d22df5f" style="width: 100.0%; height: 100.0%;">Wooster, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (11.4 mi)</div>`)[0];
+                popup_8ce97d4272349eec4de113c1e74d142c.setContent(html_77e6e9f945bb9c3b8fff3be33d22df5f);
+
+
+
+        circle_marker_6b663c032590dae7a5a4657fc12ba1c5.bindPopup(popup_8ce97d4272349eec4de113c1e74d142c)
+        ;
+
+
+
+
+            circle_marker_6b663c032590dae7a5a4657fc12ba1c5.bindTooltip(
+                `<div>
+                     Wooster, OH → West Salem, OH (11.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_570dabe2a7ba6a7ffbfa685be3b2abb1 = L.circleMarker(
+                [41.15944444, -81.44027778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_9daada597751b0f088fe6632c18482aa = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_b8c60442d953c6fd34ac409529cb2720 = $(`<div id="html_b8c60442d953c6fd34ac409529cb2720" style="width: 100.0%; height: 100.0%;">Stow, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (35.0 mi)</div>`)[0];
+                popup_9daada597751b0f088fe6632c18482aa.setContent(html_b8c60442d953c6fd34ac409529cb2720);
+
+
+
+        circle_marker_570dabe2a7ba6a7ffbfa685be3b2abb1.bindPopup(popup_9daada597751b0f088fe6632c18482aa)
+        ;
+
+
+
+
+            circle_marker_570dabe2a7ba6a7ffbfa685be3b2abb1.bindTooltip(
+                `<div>
+                     Stow, OH → West Salem, OH (35.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_18ab61f843432e80c4728e5120292356 = L.circleMarker(
+                [41.14444444, -81.43972222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_df5830176a4e9201de16269bf84e1b06 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_cb50715b889c6bad976e986e4b2f2b2a = $(`<div id="html_cb50715b889c6bad976e986e4b2f2b2a" style="width: 100.0%; height: 100.0%;">Munroe Falls, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (34.6 mi)</div>`)[0];
+                popup_df5830176a4e9201de16269bf84e1b06.setContent(html_cb50715b889c6bad976e986e4b2f2b2a);
+
+
+
+        circle_marker_18ab61f843432e80c4728e5120292356.bindPopup(popup_df5830176a4e9201de16269bf84e1b06)
+        ;
+
+
+
+
+            circle_marker_18ab61f843432e80c4728e5120292356.bindTooltip(
+                `<div>
+                     Munroe Falls, OH → West Salem, OH (34.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_75b3afec53fecfe70157d6b7d836bbb4 = L.circleMarker(
+                [41.1536, -81.4608],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_f1ed43a9ae070e5fa548a3c1dbab7311 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_bdb5103e1b4b34e225f158decf164cb9 = $(`<div id="html_bdb5103e1b4b34e225f158decf164cb9" style="width: 100.0%; height: 100.0%;">Silver Lake, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (33.8 mi)</div>`)[0];
+                popup_f1ed43a9ae070e5fa548a3c1dbab7311.setContent(html_bdb5103e1b4b34e225f158decf164cb9);
+
+
+
+        circle_marker_75b3afec53fecfe70157d6b7d836bbb4.bindPopup(popup_f1ed43a9ae070e5fa548a3c1dbab7311)
+        ;
+
+
+
+
+            circle_marker_75b3afec53fecfe70157d6b7d836bbb4.bindTooltip(
+                `<div>
+                     Silver Lake, OH → West Salem, OH (33.8 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_0c846c7d041491e70dfebd15a98e4d2e = L.circleMarker(
+                [41.01583333, -81.60583333],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_d374dca658d11115707902b155eab53d = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_bb0691bcc885e4bbfedf35d795ff42e8 = $(`<div id="html_bb0691bcc885e4bbfedf35d795ff42e8" style="width: 100.0%; height: 100.0%;">Barberton, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (23.7 mi)</div>`)[0];
+                popup_d374dca658d11115707902b155eab53d.setContent(html_bb0691bcc885e4bbfedf35d795ff42e8);
+
+
+
+        circle_marker_0c846c7d041491e70dfebd15a98e4d2e.bindPopup(popup_d374dca658d11115707902b155eab53d)
+        ;
+
+
+
+
+            circle_marker_0c846c7d041491e70dfebd15a98e4d2e.bindTooltip(
+                `<div>
+                     Barberton, OH → West Salem, OH (23.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_47751d7fd51f93e299fc3b2f60690e32 = L.circleMarker(
+                [41.0253, -81.6439],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_e2a111767f364e4060cccc9822bb47d5 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0f49df11523632727abb4385119cf87c = $(`<div id="html_0f49df11523632727abb4385119cf87c" style="width: 100.0%; height: 100.0%;">Norton, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (21.9 mi)</div>`)[0];
+                popup_e2a111767f364e4060cccc9822bb47d5.setContent(html_0f49df11523632727abb4385119cf87c);
+
+
+
+        circle_marker_47751d7fd51f93e299fc3b2f60690e32.bindPopup(popup_e2a111767f364e4060cccc9822bb47d5)
+        ;
+
+
+
+
+            circle_marker_47751d7fd51f93e299fc3b2f60690e32.bindTooltip(
+                `<div>
+                     Norton, OH → West Salem, OH (21.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_fba69e7b6346efc5f1b8925beb7d7f8f = L.circleMarker(
+                [41.13583, -81.86389],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_a6158b4d814b60388be0e2a7ce80fb70 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_5d4970cc94da4b499d31565d4609cdb8 = $(`<div id="html_5d4970cc94da4b499d31565d4609cdb8" style="width: 100.0%; height: 100.0%;">Medina, OH<br>Inside 40 mi<br>Nearest Tech: West Salem, OH (16.1 mi)</div>`)[0];
+                popup_a6158b4d814b60388be0e2a7ce80fb70.setContent(html_5d4970cc94da4b499d31565d4609cdb8);
+
+
+
+        circle_marker_fba69e7b6346efc5f1b8925beb7d7f8f.bindPopup(popup_a6158b4d814b60388be0e2a7ce80fb70)
+        ;
+
+
+
+
+            circle_marker_fba69e7b6346efc5f1b8925beb7d7f8f.bindTooltip(
+                `<div>
+                     Medina, OH → West Salem, OH (16.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_6844798fa6de2c06b27e0f67d8895c47 = L.circleMarker(
+                [41.3383, -81.4],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_27c32d0773cf04ebca01d7aa86089841 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_5058966e558d35941c065c62d4825480 = $(`<div id="html_5058966e558d35941c065c62d4825480" style="width: 100.0%; height: 100.0%;">Reminderville, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (43.2 mi)</div>`)[0];
+                popup_27c32d0773cf04ebca01d7aa86089841.setContent(html_5058966e558d35941c065c62d4825480);
+
+
+
+        circle_marker_6844798fa6de2c06b27e0f67d8895c47.bindPopup(popup_27c32d0773cf04ebca01d7aa86089841)
+        ;
+
+
+
+
+            circle_marker_6844798fa6de2c06b27e0f67d8895c47.bindTooltip(
+                `<div>
+                     Reminderville, OH → West Salem, OH (43.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_b6243af31a4eb82aaab19119be171f07 = L.circleMarker(
+                [41.39, -81.4422],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_91a60ad098ce6e3d356e237ca8296560 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_dca9ccaf6f4f8b4401a1ec9b0fc76669 = $(`<div id="html_dca9ccaf6f4f8b4401a1ec9b0fc76669" style="width: 100.0%; height: 100.0%;">Solon, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (43.9 mi)</div>`)[0];
+                popup_91a60ad098ce6e3d356e237ca8296560.setContent(html_dca9ccaf6f4f8b4401a1ec9b0fc76669);
+
+
+
+        circle_marker_b6243af31a4eb82aaab19119be171f07.bindPopup(popup_91a60ad098ce6e3d356e237ca8296560)
+        ;
+
+
+
+
+            circle_marker_b6243af31a4eb82aaab19119be171f07.bindTooltip(
+                `<div>
+                     Solon, OH → West Salem, OH (43.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_72d3323f7998dbeed69972880dfa19cc = L.circleMarker(
+                [41.72277778, -81.24972222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_5604aff0b6dbc717577f7a134e8d7679 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_9bac632d5b5a3fe678a94df64327d3a5 = $(`<div id="html_9bac632d5b5a3fe678a94df64327d3a5" style="width: 100.0%; height: 100.0%;">Painesville, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (67.6 mi)</div>`)[0];
+                popup_5604aff0b6dbc717577f7a134e8d7679.setContent(html_9bac632d5b5a3fe678a94df64327d3a5);
+
+
+
+        circle_marker_72d3323f7998dbeed69972880dfa19cc.bindPopup(popup_5604aff0b6dbc717577f7a134e8d7679)
+        ;
+
+
+
+
+            circle_marker_72d3323f7998dbeed69972880dfa19cc.bindTooltip(
+                `<div>
+                     Painesville, OH → West Salem, OH (67.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_587ab4b239ae5d429520eac7bf9c7e42 = L.circleMarker(
+                [41.72277778, -81.24972222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_6e444b809f0aa9c0979c6123c035d16f = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_8e5a9d7a9e2593809f3ba9d382c95be8 = $(`<div id="html_8e5a9d7a9e2593809f3ba9d382c95be8" style="width: 100.0%; height: 100.0%;">Painesville, OH<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (67.6 mi)</div>`)[0];
+                popup_6e444b809f0aa9c0979c6123c035d16f.setContent(html_8e5a9d7a9e2593809f3ba9d382c95be8);
+
+
+
+        circle_marker_587ab4b239ae5d429520eac7bf9c7e42.bindPopup(popup_6e444b809f0aa9c0979c6123c035d16f)
+        ;
+
+
+
+
+            circle_marker_587ab4b239ae5d429520eac7bf9c7e42.bindTooltip(
+                `<div>
+                     Painesville, OH → West Salem, OH (67.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_9087686d0cf398ab3f095dc6fd69390d = L.circleMarker(
+                [42.24583333, -84.40138889],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_3a4ba10c7e5dbd9592e1bca12e4c2ee6 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_d4579ce21ac9e5a613b376e58346b71e = $(`<div id="html_d4579ce21ac9e5a613b376e58346b71e" style="width: 100.0%; height: 100.0%;">Jackson, MI<br>Inside 40 mi<br>Nearest Tech: Adrian, MI (29.9 mi)</div>`)[0];
+                popup_3a4ba10c7e5dbd9592e1bca12e4c2ee6.setContent(html_d4579ce21ac9e5a613b376e58346b71e);
+
+
+
+        circle_marker_9087686d0cf398ab3f095dc6fd69390d.bindPopup(popup_3a4ba10c7e5dbd9592e1bca12e4c2ee6)
+        ;
+
+
+
+
+            circle_marker_9087686d0cf398ab3f095dc6fd69390d.bindTooltip(
+                `<div>
+                     Jackson, MI → Adrian, MI (29.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_8d08d404373715e921b2e008d9c6a58a = L.circleMarker(
+                [42.08333333, -83.68333333],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_9aba514d9e6b6dda344ff4b798fffab6 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_6305d05b9d2608ef9852d004a588ecfa = $(`<div id="html_6305d05b9d2608ef9852d004a588ecfa" style="width: 100.0%; height: 100.0%;">Milan, MI<br>Inside 40 mi<br>Nearest Tech: Adrian, MI (22.7 mi)</div>`)[0];
+                popup_9aba514d9e6b6dda344ff4b798fffab6.setContent(html_6305d05b9d2608ef9852d004a588ecfa);
+
+
+
+        circle_marker_8d08d404373715e921b2e008d9c6a58a.bindPopup(popup_9aba514d9e6b6dda344ff4b798fffab6)
+        ;
+
+
+
+
+            circle_marker_8d08d404373715e921b2e008d9c6a58a.bindTooltip(
+                `<div>
+                     Milan, MI → Adrian, MI (22.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_90624aabb0ac43470122c986ddc6497c = L.circleMarker(
+                [41.91638889, -83.39777778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_57d13716955c8452128358f02a6c6fdd = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_8c037e9c8a045c283283b60c6c80f38d = $(`<div id="html_8c037e9c8a045c283283b60c6c80f38d" style="width: 100.0%; height: 100.0%;">Monroe, MI<br>Inside 40 mi<br>Nearest Tech: Adrian, MI (33.6 mi)</div>`)[0];
+                popup_57d13716955c8452128358f02a6c6fdd.setContent(html_8c037e9c8a045c283283b60c6c80f38d);
+
+
+
+        circle_marker_90624aabb0ac43470122c986ddc6497c.bindPopup(popup_57d13716955c8452128358f02a6c6fdd)
+        ;
+
+
+
+
+            circle_marker_90624aabb0ac43470122c986ddc6497c.bindTooltip(
+                `<div>
+                     Monroe, MI → Adrian, MI (33.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_d9c909f86d457932c70e0fccf549332f = L.circleMarker(
+                [41.91388889, -83.43166667],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_ed71216732825a7aaf4c080e441a099d = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_14466412bfa55ec27f16adee406edb67 = $(`<div id="html_14466412bfa55ec27f16adee406edb67" style="width: 100.0%; height: 100.0%;">West Monroe, MI<br>Inside 40 mi<br>Nearest Tech: Adrian, MI (31.9 mi)</div>`)[0];
+                popup_ed71216732825a7aaf4c080e441a099d.setContent(html_14466412bfa55ec27f16adee406edb67);
+
+
+
+        circle_marker_d9c909f86d457932c70e0fccf549332f.bindPopup(popup_ed71216732825a7aaf4c080e441a099d)
+        ;
+
+
+
+
+            circle_marker_d9c909f86d457932c70e0fccf549332f.bindTooltip(
+                `<div>
+                     West Monroe, MI → Adrian, MI (31.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_9f22e8f4abb8263787ba61398c5543f0 = L.circleMarker(
+                [41.89583333, -83.41777778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_546e5ab48d53e8a58bed63657cf97000 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_da732e135ba97b7e65af04995e05f43b = $(`<div id="html_da732e135ba97b7e65af04995e05f43b" style="width: 100.0%; height: 100.0%;">South Monroe (Monroe Twp), MI<br>Inside 40 mi<br>Nearest Tech: Adrian, MI (32.6 mi)</div>`)[0];
+                popup_546e5ab48d53e8a58bed63657cf97000.setContent(html_da732e135ba97b7e65af04995e05f43b);
+
+
+
+        circle_marker_9f22e8f4abb8263787ba61398c5543f0.bindPopup(popup_546e5ab48d53e8a58bed63657cf97000)
+        ;
+
+
+
+
+            circle_marker_9f22e8f4abb8263787ba61398c5543f0.bindTooltip(
+                `<div>
+                     South Monroe (Monroe Twp), MI → Adrian, MI (32.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_0ce95446903af3dd0fef5b2ef7f16e8e = L.circleMarker(
+                [41.385, -83.3217],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_da56f3347d6ac9356c8bd96a5d7dc726 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_62116c8dc40aca7f47a3117339f07fd8 = $(`<div id="html_62116c8dc40aca7f47a3117339f07fd8" style="width: 100.0%; height: 100.0%;">Gibsonburg, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (10.8 mi)</div>`)[0];
+                popup_da56f3347d6ac9356c8bd96a5d7dc726.setContent(html_62116c8dc40aca7f47a3117339f07fd8);
+
+
+
+        circle_marker_0ce95446903af3dd0fef5b2ef7f16e8e.bindPopup(popup_da56f3347d6ac9356c8bd96a5d7dc726)
+        ;
+
+
+
+
+            circle_marker_0ce95446903af3dd0fef5b2ef7f16e8e.bindTooltip(
+                `<div>
+                     Gibsonburg, OH → Fremont, OH (10.8 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_ca858329e89cfe36e16ad7fca57f7f9f = L.circleMarker(
+                [41.77916667, -83.56888889],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_e99dbc28835b9c6871ddbd0f5e1b6fc4 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_3ca9406958e8d2242a3956e61bfa7b36 = $(`<div id="html_3ca9406958e8d2242a3956e61bfa7b36" style="width: 100.0%; height: 100.0%;">Temperance, MI<br>Inside 40 mi<br>Nearest Tech: Adrian, MI (26.2 mi)</div>`)[0];
+                popup_e99dbc28835b9c6871ddbd0f5e1b6fc4.setContent(html_3ca9406958e8d2242a3956e61bfa7b36);
+
+
+
+        circle_marker_ca858329e89cfe36e16ad7fca57f7f9f.bindPopup(popup_e99dbc28835b9c6871ddbd0f5e1b6fc4)
+        ;
+
+
+
+
+            circle_marker_ca858329e89cfe36e16ad7fca57f7f9f.bindTooltip(
+                `<div>
+                     Temperance, MI → Adrian, MI (26.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_9696b1c99564ffd9deb8514ac6c0a1ef = L.circleMarker(
+                [41.76583333, -83.62805556],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_dc63de6bdb8560cd07bcce0eeae143f3 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_a0fc19d4998cc4dc1790ec95733eb9e8 = $(`<div id="html_a0fc19d4998cc4dc1790ec95733eb9e8" style="width: 100.0%; height: 100.0%;">Lambertville, MI<br>Inside 40 mi<br>Nearest Tech: Adrian, MI (23.7 mi)</div>`)[0];
+                popup_dc63de6bdb8560cd07bcce0eeae143f3.setContent(html_a0fc19d4998cc4dc1790ec95733eb9e8);
+
+
+
+        circle_marker_9696b1c99564ffd9deb8514ac6c0a1ef.bindPopup(popup_dc63de6bdb8560cd07bcce0eeae143f3)
+        ;
+
+
+
+
+            circle_marker_9696b1c99564ffd9deb8514ac6c0a1ef.bindTooltip(
+                `<div>
+                     Lambertville, MI → Adrian, MI (23.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_ca3aa9f080910e16eecb852a135f6d11 = L.circleMarker(
+                [41.65277778, -83.53777778],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_6764459c44c4830390de5393f3d72bfe = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_ae176e4f69249f7ba27d2800517888e3 = $(`<div id="html_ae176e4f69249f7ba27d2800517888e3" style="width: 100.0%; height: 100.0%;">Toledo, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (30.1 mi)</div>`)[0];
+                popup_6764459c44c4830390de5393f3d72bfe.setContent(html_ae176e4f69249f7ba27d2800517888e3);
+
+
+
+        circle_marker_ca3aa9f080910e16eecb852a135f6d11.bindPopup(popup_6764459c44c4830390de5393f3d72bfe)
+        ;
+
+
+
+
+            circle_marker_ca3aa9f080910e16eecb852a135f6d11.bindTooltip(
+                `<div>
+                     Toledo, OH → Fremont, OH (30.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_cb0854bae9bb1caa6aaa73d24ed546cc = L.circleMarker(
+                [41.59361111, -83.56805556],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_b5ba893514eed8bde1b5f9b693df3d5a = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_156d1171286402b97bb532901d21e23b = $(`<div id="html_156d1171286402b97bb532901d21e23b" style="width: 100.0%; height: 100.0%;">Rossford, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (28.7 mi)</div>`)[0];
+                popup_b5ba893514eed8bde1b5f9b693df3d5a.setContent(html_156d1171286402b97bb532901d21e23b);
+
+
+
+        circle_marker_cb0854bae9bb1caa6aaa73d24ed546cc.bindPopup(popup_b5ba893514eed8bde1b5f9b693df3d5a)
+        ;
+
+
+
+
+            circle_marker_cb0854bae9bb1caa6aaa73d24ed546cc.bindTooltip(
+                `<div>
+                     Rossford, OH → Fremont, OH (28.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_3c13f1480c5b04751f6e514624c2600d = L.circleMarker(
+                [41.55027778, -83.63],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_90873dc165c6e1ec135b7a9cbd9e1591 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_ce2f95f43720853f87c149fdae943ee4 = $(`<div id="html_ce2f95f43720853f87c149fdae943ee4" style="width: 100.0%; height: 100.0%;">Perrysburg, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (29.9 mi)</div>`)[0];
+                popup_90873dc165c6e1ec135b7a9cbd9e1591.setContent(html_ce2f95f43720853f87c149fdae943ee4);
+
+
+
+        circle_marker_3c13f1480c5b04751f6e514624c2600d.bindPopup(popup_90873dc165c6e1ec135b7a9cbd9e1591)
+        ;
+
+
+
+
+            circle_marker_3c13f1480c5b04751f6e514624c2600d.bindTooltip(
+                `<div>
+                     Perrysburg, OH → Fremont, OH (29.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_1a3f430c65b924e24f65a9a7299eecc5 = L.circleMarker(
+                [41.55027778, -83.63],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_78830e56784a8cd4fe9206ddafff3961 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_182528baae54e71337d74e7fdc2e9070 = $(`<div id="html_182528baae54e71337d74e7fdc2e9070" style="width: 100.0%; height: 100.0%;">Perrysburg, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (29.9 mi)</div>`)[0];
+                popup_78830e56784a8cd4fe9206ddafff3961.setContent(html_182528baae54e71337d74e7fdc2e9070);
+
+
+
+        circle_marker_1a3f430c65b924e24f65a9a7299eecc5.bindPopup(popup_78830e56784a8cd4fe9206ddafff3961)
+        ;
+
+
+
+
+            circle_marker_1a3f430c65b924e24f65a9a7299eecc5.bindTooltip(
+                `<div>
+                     Perrysburg, OH → Fremont, OH (29.9 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_1385f72bf37d82907ca3f66dbd88da7b = L.circleMarker(
+                [41.3233, -82.4925],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_b177d81f82bc8995f907a6e0721eb8b7 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_f7d3219ffe3f833ebbbd43feb1783ffb = $(`<div id="html_f7d3219ffe3f833ebbbd43feb1783ffb" style="width: 100.0%; height: 100.0%;">Berlin Heights, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (32.7 mi)</div>`)[0];
+                popup_b177d81f82bc8995f907a6e0721eb8b7.setContent(html_f7d3219ffe3f833ebbbd43feb1783ffb);
+
+
+
+        circle_marker_1385f72bf37d82907ca3f66dbd88da7b.bindPopup(popup_b177d81f82bc8995f907a6e0721eb8b7)
+        ;
+
+
+
+
+            circle_marker_1385f72bf37d82907ca3f66dbd88da7b.bindTooltip(
+                `<div>
+                     Berlin Heights, OH → Fremont, OH (32.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_c3f5667a7df813a27bc53cf3696cb270 = L.circleMarker(
+                [41.3335, -83.1401],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_81956f9f5600c7d6df68c067cd37c6e7 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0d254010a9d53cf722b50729dc6c59e5 = $(`<div id="html_0d254010a9d53cf722b50729dc6c59e5" style="width: 100.0%; height: 100.0%;">Ballville Twp, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (1.5 mi)</div>`)[0];
+                popup_81956f9f5600c7d6df68c067cd37c6e7.setContent(html_0d254010a9d53cf722b50729dc6c59e5);
+
+
+
+        circle_marker_c3f5667a7df813a27bc53cf3696cb270.bindPopup(popup_81956f9f5600c7d6df68c067cd37c6e7)
+        ;
+
+
+
+
+            circle_marker_c3f5667a7df813a27bc53cf3696cb270.bindTooltip(
+                `<div>
+                     Ballville Twp, OH → Fremont, OH (1.5 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_e452ec7dea185f1482f65030d22b1f0e = L.circleMarker(
+                [41.5097, -82.9403],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_c81b490e05e061ead280fc07a15ffd30 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_9a0460e454a8679fbb8a1661c46105b0 = $(`<div id="html_9a0460e454a8679fbb8a1661c46105b0" style="width: 100.0%; height: 100.0%;">Port Clinton, OH<br>Inside 40 mi<br>Nearest Tech: Fremont, OH (14.4 mi)</div>`)[0];
+                popup_c81b490e05e061ead280fc07a15ffd30.setContent(html_9a0460e454a8679fbb8a1661c46105b0);
+
+
+
+        circle_marker_e452ec7dea185f1482f65030d22b1f0e.bindPopup(popup_c81b490e05e061ead280fc07a15ffd30)
+        ;
+
+
+
+
+            circle_marker_e452ec7dea185f1482f65030d22b1f0e.bindTooltip(
+                `<div>
+                     Port Clinton, OH → Fremont, OH (14.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_c932f5c5abb5bd84419ba70e2a5a1cde = L.circleMarker(
+                [42.7978, -83.705],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_49bf979ab4f529e1932b77e0f7825a72 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0023e34dc242b93318fa808823a45832 = $(`<div id="html_0023e34dc242b93318fa808823a45832" style="width: 100.0%; height: 100.0%;">Fenton, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (64.4 mi)</div>`)[0];
+                popup_49bf979ab4f529e1932b77e0f7825a72.setContent(html_0023e34dc242b93318fa808823a45832);
+
+
+
+        circle_marker_c932f5c5abb5bd84419ba70e2a5a1cde.bindPopup(popup_49bf979ab4f529e1932b77e0f7825a72)
+        ;
+
+
+
+
+            circle_marker_c932f5c5abb5bd84419ba70e2a5a1cde.bindTooltip(
+                `<div>
+                     Fenton, MI → Adrian, MI (64.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_3c40bfbc4c4b0d9322c1e5239f8f940e = L.circleMarker(
+                [43.59777778, -84.7675],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_190c566a053200efa1564605fc2531e9 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_6c9f7e223860f79c7efdf99780a9e6e0 = $(`<div id="html_6c9f7e223860f79c7efdf99780a9e6e0" style="width: 100.0%; height: 100.0%;">Mt Pleasant, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (122.7 mi)</div>`)[0];
+                popup_190c566a053200efa1564605fc2531e9.setContent(html_6c9f7e223860f79c7efdf99780a9e6e0);
+
+
+
+        circle_marker_3c40bfbc4c4b0d9322c1e5239f8f940e.bindPopup(popup_190c566a053200efa1564605fc2531e9)
+        ;
+
+
+
+
+            circle_marker_3c40bfbc4c4b0d9322c1e5239f8f940e.bindTooltip(
+                `<div>
+                     Mt Pleasant, MI → Adrian, MI (122.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_4a0343147f5b1dd0748a6b42e2996898 = L.circleMarker(
+                [42.9275, -83.62972222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_36f30c3e6e24e76f227e9d70c651f755 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_139a5e7edc06dfe31fa8b907078a6920 = $(`<div id="html_139a5e7edc06dfe31fa8b907078a6920" style="width: 100.0%; height: 100.0%;">Grand Blanc Twp, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (74.1 mi)</div>`)[0];
+                popup_36f30c3e6e24e76f227e9d70c651f755.setContent(html_139a5e7edc06dfe31fa8b907078a6920);
+
+
+
+        circle_marker_4a0343147f5b1dd0748a6b42e2996898.bindPopup(popup_36f30c3e6e24e76f227e9d70c651f755)
+        ;
+
+
+
+
+            circle_marker_4a0343147f5b1dd0748a6b42e2996898.bindTooltip(
+                `<div>
+                     Grand Blanc Twp, MI → Adrian, MI (74.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_2276bfe9545a8044f27d0f090a96059e = L.circleMarker(
+                [42.9275, -83.62972222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_226f895c1a8311a6522b09f4ff01022c = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_f9b9ec296c1e597399cd6087eff16482 = $(`<div id="html_f9b9ec296c1e597399cd6087eff16482" style="width: 100.0%; height: 100.0%;">Grand Blanc, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (74.1 mi)</div>`)[0];
+                popup_226f895c1a8311a6522b09f4ff01022c.setContent(html_f9b9ec296c1e597399cd6087eff16482);
+
+
+
+        circle_marker_2276bfe9545a8044f27d0f090a96059e.bindPopup(popup_226f895c1a8311a6522b09f4ff01022c)
+        ;
+
+
+
+
+            circle_marker_2276bfe9545a8044f27d0f090a96059e.bindTooltip(
+                `<div>
+                     Grand Blanc, MI → Adrian, MI (74.1 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_944cee663d3da78c13787fabc06383b9 = L.circleMarker(
+                [42.9911, -83.6353],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_31eb956d392732bdbfe9c98bd00657df = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_89dc16680d61239b7d961b501b5047a7 = $(`<div id="html_89dc16680d61239b7d961b501b5047a7" style="width: 100.0%; height: 100.0%;">Burton, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (78.2 mi)</div>`)[0];
+                popup_31eb956d392732bdbfe9c98bd00657df.setContent(html_89dc16680d61239b7d961b501b5047a7);
+
+
+
+        circle_marker_944cee663d3da78c13787fabc06383b9.bindPopup(popup_31eb956d392732bdbfe9c98bd00657df)
+        ;
+
+
+
+
+            circle_marker_944cee663d3da78c13787fabc06383b9.bindTooltip(
+                `<div>
+                     Burton, MI → Adrian, MI (78.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_64713dbe5f2b24b72b373ebe46546cc4 = L.circleMarker(
+                [43.01888889, -83.69333333],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_86cabc7d3ce0026ac7da20bfdd739232 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_ea427cf59af466c25dfff4510a97bc01 = $(`<div id="html_ea427cf59af466c25dfff4510a97bc01" style="width: 100.0%; height: 100.0%;">Flint, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (79.4 mi)</div>`)[0];
+                popup_86cabc7d3ce0026ac7da20bfdd739232.setContent(html_ea427cf59af466c25dfff4510a97bc01);
+
+
+
+        circle_marker_64713dbe5f2b24b72b373ebe46546cc4.bindPopup(popup_86cabc7d3ce0026ac7da20bfdd739232)
+        ;
+
+
+
+
+            circle_marker_64713dbe5f2b24b72b373ebe46546cc4.bindTooltip(
+                `<div>
+                     Flint, MI → Adrian, MI (79.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_c72e77c725370a76d9328fbb481f7b26 = L.circleMarker(
+                [43.61555556, -84.24722222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_788daa0875c5ef4ca8906aac0dc7e5fe = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_17a1823a1d85905256ffc595c154daab = $(`<div id="html_17a1823a1d85905256ffc595c154daab" style="width: 100.0%; height: 100.0%;">Midland, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (118.8 mi)</div>`)[0];
+                popup_788daa0875c5ef4ca8906aac0dc7e5fe.setContent(html_17a1823a1d85905256ffc595c154daab);
+
+
+
+        circle_marker_c72e77c725370a76d9328fbb481f7b26.bindPopup(popup_788daa0875c5ef4ca8906aac0dc7e5fe)
+        ;
+
+
+
+
+            circle_marker_c72e77c725370a76d9328fbb481f7b26.bindTooltip(
+                `<div>
+                     Midland, MI → Adrian, MI (118.8 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_0b9cd9fdcc74be26719c38fa41feca78 = L.circleMarker(
+                [43.59505, -83.888639],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_db2990167940117c902d5e7b09eef0cc = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_83a047f093c5bb011ed0bf5f5f5b156c = $(`<div id="html_83a047f093c5bb011ed0bf5f5f5b156c" style="width: 100.0%; height: 100.0%;">Bay City, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (117.3 mi)</div>`)[0];
+                popup_db2990167940117c902d5e7b09eef0cc.setContent(html_83a047f093c5bb011ed0bf5f5f5b156c);
+
+
+
+        circle_marker_0b9cd9fdcc74be26719c38fa41feca78.bindPopup(popup_db2990167940117c902d5e7b09eef0cc)
+        ;
+
+
+
+
+            circle_marker_0b9cd9fdcc74be26719c38fa41feca78.bindTooltip(
+                `<div>
+                     Bay City, MI → Adrian, MI (117.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_344e47d0c73c301b29acf14b9be29a1c = L.circleMarker(
+                [43.42777778, -84.10472222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_8b25e1ca61ffb9a6b7c811a70232ba52 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_6f109568a5ec33e9c369d6d2b9b7442e = $(`<div id="html_6f109568a5ec33e9c369d6d2b9b7442e" style="width: 100.0%; height: 100.0%;">Thomas Township, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (105.5 mi)</div>`)[0];
+                popup_8b25e1ca61ffb9a6b7c811a70232ba52.setContent(html_6f109568a5ec33e9c369d6d2b9b7442e);
+
+
+
+        circle_marker_344e47d0c73c301b29acf14b9be29a1c.bindPopup(popup_8b25e1ca61ffb9a6b7c811a70232ba52)
+        ;
+
+
+
+
+            circle_marker_344e47d0c73c301b29acf14b9be29a1c.bindTooltip(
+                `<div>
+                     Thomas Township, MI → Adrian, MI (105.5 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_d44618aabe90e545ea0c96ba63a9c548 = L.circleMarker(
+                [43.35361111, -84.05611111],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_f068adf1714824e45b01f6ddfa0b0077 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_cc3c926a00e9056922352512e3e940bf = $(`<div id="html_cc3c926a00e9056922352512e3e940bf" style="width: 100.0%; height: 100.0%;">James Township, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (100.3 mi)</div>`)[0];
+                popup_f068adf1714824e45b01f6ddfa0b0077.setContent(html_cc3c926a00e9056922352512e3e940bf);
+
+
+
+        circle_marker_d44618aabe90e545ea0c96ba63a9c548.bindPopup(popup_f068adf1714824e45b01f6ddfa0b0077)
+        ;
+
+
+
+
+            circle_marker_d44618aabe90e545ea0c96ba63a9c548.bindTooltip(
+                `<div>
+                     James Township, MI → Adrian, MI (100.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_3d92b4b8847dc665b8340ab69843b603 = L.circleMarker(
+                [43.45944444, -83.93944444],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_aca632da948f895048113d52a4630153 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_9b4e18bfc23acb99308f903d9837e3a7 = $(`<div id="html_9b4e18bfc23acb99308f903d9837e3a7" style="width: 100.0%; height: 100.0%;">Carrollton Township, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (107.8 mi)</div>`)[0];
+                popup_aca632da948f895048113d52a4630153.setContent(html_9b4e18bfc23acb99308f903d9837e3a7);
+
+
+
+        circle_marker_3d92b4b8847dc665b8340ab69843b603.bindPopup(popup_aca632da948f895048113d52a4630153)
+        ;
+
+
+
+
+            circle_marker_3d92b4b8847dc665b8340ab69843b603.bindTooltip(
+                `<div>
+                     Carrollton Township, MI → Adrian, MI (107.8 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_c8c700bd2ed33140208815c5fec4c534 = L.circleMarker(
+                [43.42027778, -83.89861111],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_1862bcfabac3e7a6bf0f3df04958f500 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_3bfe431a7fe689f52e5e4964d7fea8c2 = $(`<div id="html_3bfe431a7fe689f52e5e4964d7fea8c2" style="width: 100.0%; height: 100.0%;">Buena Vista, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (105.2 mi)</div>`)[0];
+                popup_1862bcfabac3e7a6bf0f3df04958f500.setContent(html_3bfe431a7fe689f52e5e4964d7fea8c2);
+
+
+
+        circle_marker_c8c700bd2ed33140208815c5fec4c534.bindPopup(popup_1862bcfabac3e7a6bf0f3df04958f500)
+        ;
+
+
+
+
+            circle_marker_c8c700bd2ed33140208815c5fec4c534.bindTooltip(
+                `<div>
+                     Buena Vista, MI → Adrian, MI (105.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_8a49c84dd0dadd242c74ef1ffc3e8ac5 = L.circleMarker(
+                [43.4199247, -83.9500261],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_65385a6b276936e14988d41a513d02ec = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_3b04e7bca81a97159d14592a2effcd24 = $(`<div id="html_3b04e7bca81a97159d14592a2effcd24" style="width: 100.0%; height: 100.0%;">Saginaw Twp, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (105.0 mi)</div>`)[0];
+                popup_65385a6b276936e14988d41a513d02ec.setContent(html_3b04e7bca81a97159d14592a2effcd24);
+
+
+
+        circle_marker_8a49c84dd0dadd242c74ef1ffc3e8ac5.bindPopup(popup_65385a6b276936e14988d41a513d02ec)
+        ;
+
+
+
+
+            circle_marker_8a49c84dd0dadd242c74ef1ffc3e8ac5.bindTooltip(
+                `<div>
+                     Saginaw Twp, MI → Adrian, MI (105.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_a4d5e447fe22efd0b2f4dbdbac4a38d6 = L.circleMarker(
+                [43.4199247, -83.9500261],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_d1e4d83a0d4ff61f7c10a73cc8b96a80 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_1f3e9753229a094c4bc718c583a3f335 = $(`<div id="html_1f3e9753229a094c4bc718c583a3f335" style="width: 100.0%; height: 100.0%;">Saginaw, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (105.0 mi)</div>`)[0];
+                popup_d1e4d83a0d4ff61f7c10a73cc8b96a80.setContent(html_1f3e9753229a094c4bc718c583a3f335);
+
+
+
+        circle_marker_a4d5e447fe22efd0b2f4dbdbac4a38d6.bindPopup(popup_d1e4d83a0d4ff61f7c10a73cc8b96a80)
+        ;
+
+
+
+
+            circle_marker_a4d5e447fe22efd0b2f4dbdbac4a38d6.bindTooltip(
+                `<div>
+                     Saginaw, MI → Adrian, MI (105.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_33761416a63c5d9b659f0e66c5d6d7b6 = L.circleMarker(
+                [43.4199247, -83.9500261],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_3fca8e7de84cdaf1b8b06d37ee4578ab = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_e55c1f566dddb79c2a84c441710834c8 = $(`<div id="html_e55c1f566dddb79c2a84c441710834c8" style="width: 100.0%; height: 100.0%;">Saginaw, MI<br>Outside 40 mi<br>Nearest Tech: Adrian, MI (105.0 mi)</div>`)[0];
+                popup_3fca8e7de84cdaf1b8b06d37ee4578ab.setContent(html_e55c1f566dddb79c2a84c441710834c8);
+
+
+
+        circle_marker_33761416a63c5d9b659f0e66c5d6d7b6.bindPopup(popup_3fca8e7de84cdaf1b8b06d37ee4578ab)
+        ;
+
+
+
+
+            circle_marker_33761416a63c5d9b659f0e66c5d6d7b6.bindTooltip(
+                `<div>
+                     Saginaw, MI → Adrian, MI (105.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_a9496114647f42c2c3a1129418177a9a = L.circleMarker(
+                [40.38333333, -79.74138889],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_f48f14f674b167843dc712eb18234341 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_45a386859472eaeffe631295b045375d = $(`<div id="html_45a386859472eaeffe631295b045375d" style="width: 100.0%; height: 100.0%;">North Huntingdon, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (127.4 mi)</div>`)[0];
+                popup_f48f14f674b167843dc712eb18234341.setContent(html_45a386859472eaeffe631295b045375d);
+
+
+
+        circle_marker_a9496114647f42c2c3a1129418177a9a.bindPopup(popup_f48f14f674b167843dc712eb18234341)
+        ;
+
+
+
+
+            circle_marker_a9496114647f42c2c3a1129418177a9a.bindTooltip(
+                `<div>
+                     North Huntingdon, PA → West Salem, OH (127.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_bc37067f1bcb51cc3e2e8ec30f896148 = L.circleMarker(
+                [40.33583, -79.66806],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_fe4834b77fca3b381aaa0941a62aa1df = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_47a7618b161ca11349e700f093dfe14c = $(`<div id="html_47a7618b161ca11349e700f093dfe14c" style="width: 100.0%; height: 100.0%;">Manor, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (132.2 mi)</div>`)[0];
+                popup_fe4834b77fca3b381aaa0941a62aa1df.setContent(html_47a7618b161ca11349e700f093dfe14c);
+
+
+
+        circle_marker_bc37067f1bcb51cc3e2e8ec30f896148.bindPopup(popup_fe4834b77fca3b381aaa0941a62aa1df)
+        ;
+
+
+
+
+            circle_marker_bc37067f1bcb51cc3e2e8ec30f896148.bindTooltip(
+                `<div>
+                     Manor, PA → West Salem, OH (132.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_2f5571fc3c05ea528477d41bb897b0e4 = L.circleMarker(
+                [40.3289, -79.6139],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_0c0afd2229a2b8fee3fc0a364dfa8b73 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_02cf25da5c12e0681b71d883a385750a = $(`<div id="html_02cf25da5c12e0681b71d883a385750a" style="width: 100.0%; height: 100.0%;">Jeanette, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (135.0 mi)</div>`)[0];
+                popup_0c0afd2229a2b8fee3fc0a364dfa8b73.setContent(html_02cf25da5c12e0681b71d883a385750a);
+
+
+
+        circle_marker_2f5571fc3c05ea528477d41bb897b0e4.bindPopup(popup_0c0afd2229a2b8fee3fc0a364dfa8b73)
+        ;
+
+
+
+
+            circle_marker_2f5571fc3c05ea528477d41bb897b0e4.bindTooltip(
+                `<div>
+                     Jeanette, PA → West Salem, OH (135.0 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_95a457f67052e52ca71c45d9ea2a8fb3 = L.circleMarker(
+                [40.3289, -79.6403],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_b770f87ed3be6bae7eca570634534473 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_4737f2cb3c7405a069327f289bb4dfc6 = $(`<div id="html_4737f2cb3c7405a069327f289bb4dfc6" style="width: 100.0%; height: 100.0%;">Penn, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (133.7 mi)</div>`)[0];
+                popup_b770f87ed3be6bae7eca570634534473.setContent(html_4737f2cb3c7405a069327f289bb4dfc6);
+
+
+
+        circle_marker_95a457f67052e52ca71c45d9ea2a8fb3.bindPopup(popup_b770f87ed3be6bae7eca570634534473)
+        ;
+
+
+
+
+            circle_marker_95a457f67052e52ca71c45d9ea2a8fb3.bindTooltip(
+                `<div>
+                     Penn, PA → West Salem, OH (133.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_b4b33651a69fa2f294bc4533f00b9958 = L.circleMarker(
+                [40.32777778, -79.70305556],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_c80329752992df23722af6767cecafaa = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_3367df966fcc8b528d33a72021c2322a = $(`<div id="html_3367df966fcc8b528d33a72021c2322a" style="width: 100.0%; height: 100.0%;">Irwin, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (130.6 mi)</div>`)[0];
+                popup_c80329752992df23722af6767cecafaa.setContent(html_3367df966fcc8b528d33a72021c2322a);
+
+
+
+        circle_marker_b4b33651a69fa2f294bc4533f00b9958.bindPopup(popup_c80329752992df23722af6767cecafaa)
+        ;
+
+
+
+
+            circle_marker_b4b33651a69fa2f294bc4533f00b9958.bindTooltip(
+                `<div>
+                     Irwin, PA → West Salem, OH (130.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_4221bd54c92e4e58719326d1c45e6509 = L.circleMarker(
+                [40.29777778, -79.54222222],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_8fb45c5a8c5cb52922076d2b61d618ff = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0292e9b91ae045e2fa498b838a5cc054 = $(`<div id="html_0292e9b91ae045e2fa498b838a5cc054" style="width: 100.0%; height: 100.0%;">Greensburg, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (139.3 mi)</div>`)[0];
+                popup_8fb45c5a8c5cb52922076d2b61d618ff.setContent(html_0292e9b91ae045e2fa498b838a5cc054);
+
+
+
+        circle_marker_4221bd54c92e4e58719326d1c45e6509.bindPopup(popup_8fb45c5a8c5cb52922076d2b61d618ff)
+        ;
+
+
+
+
+            circle_marker_4221bd54c92e4e58719326d1c45e6509.bindTooltip(
+                `<div>
+                     Greensburg, PA → West Salem, OH (139.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_3134d9de521b8bb00ea37083d801d7cc = L.circleMarker(
+                [40.23944444, -79.58055556],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_c5a6700f21774c387993813415511fa7 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_e9b6005d5da1a7d355a4d1a482095def = $(`<div id="html_e9b6005d5da1a7d355a4d1a482095def" style="width: 100.0%; height: 100.0%;">Youngwood, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (138.8 mi)</div>`)[0];
+                popup_c5a6700f21774c387993813415511fa7.setContent(html_e9b6005d5da1a7d355a4d1a482095def);
+
+
+
+        circle_marker_3134d9de521b8bb00ea37083d801d7cc.bindPopup(popup_c5a6700f21774c387993813415511fa7)
+        ;
+
+
+
+
+            circle_marker_3134d9de521b8bb00ea37083d801d7cc.bindTooltip(
+                `<div>
+                     Youngwood, PA → West Salem, OH (138.8 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_a3b7038dc0981162bd97481affe10ed7 = L.circleMarker(
+                [40.22, -79.60361111],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_93ca1e8b05856b11ee4c4d1c07469b2f = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_c0763b30135a430dd6f4db9066093679 = $(`<div id="html_c0763b30135a430dd6f4db9066093679" style="width: 100.0%; height: 100.0%;">New Stanton, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (138.2 mi)</div>`)[0];
+                popup_93ca1e8b05856b11ee4c4d1c07469b2f.setContent(html_c0763b30135a430dd6f4db9066093679);
+
+
+
+        circle_marker_a3b7038dc0981162bd97481affe10ed7.bindPopup(popup_93ca1e8b05856b11ee4c4d1c07469b2f)
+        ;
+
+
+
+
+            circle_marker_a3b7038dc0981162bd97481affe10ed7.bindTooltip(
+                `<div>
+                     New Stanton, PA → West Salem, OH (138.2 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_cf71e985e2d547a8767f63a60cfbc5ea = L.circleMarker(
+                [40.1153, -79.5997],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_e8ec2d13f8bdb42ac19f2c9787ccc713 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_d6a2be2715e4537d774b4fbbbbb39024 = $(`<div id="html_d6a2be2715e4537d774b4fbbbbb39024" style="width: 100.0%; height: 100.0%;">Scottdale, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (141.3 mi)</div>`)[0];
+                popup_e8ec2d13f8bdb42ac19f2c9787ccc713.setContent(html_d6a2be2715e4537d774b4fbbbbb39024);
+
+
+
+        circle_marker_cf71e985e2d547a8767f63a60cfbc5ea.bindPopup(popup_e8ec2d13f8bdb42ac19f2c9787ccc713)
+        ;
+
+
+
+
+            circle_marker_cf71e985e2d547a8767f63a60cfbc5ea.bindTooltip(
+                `<div>
+                     Scottdale, PA → West Salem, OH (141.3 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_ebc1d5cdc01ee94ee84f9881e775b1b5 = L.circleMarker(
+                [40.0906, -79.5869],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_9f6ac3d561abce3f2fd8f1218e02dd1c = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_17b2d14a9796978d7b8b0f72514b6aac = $(`<div id="html_17b2d14a9796978d7b8b0f72514b6aac" style="width: 100.0%; height: 100.0%;">Everson, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (142.6 mi)</div>`)[0];
+                popup_9f6ac3d561abce3f2fd8f1218e02dd1c.setContent(html_17b2d14a9796978d7b8b0f72514b6aac);
+
+
+
+        circle_marker_ebc1d5cdc01ee94ee84f9881e775b1b5.bindPopup(popup_9f6ac3d561abce3f2fd8f1218e02dd1c)
+        ;
+
+
+
+
+            circle_marker_ebc1d5cdc01ee94ee84f9881e775b1b5.bindTooltip(
+                `<div>
+                     Everson, PA → West Salem, OH (142.6 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_824b71da165c49f0629a0a1f7ca3e59c = L.circleMarker(
+                [40.01611111, -79.59],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_bea68d88c18fe4883dcf8a24173a8b8d = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_0c18beb53183cc17de597d6cf04c59e2 = $(`<div id="html_0c18beb53183cc17de597d6cf04c59e2" style="width: 100.0%; height: 100.0%;">Connellsville, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (144.7 mi)</div>`)[0];
+                popup_bea68d88c18fe4883dcf8a24173a8b8d.setContent(html_0c18beb53183cc17de597d6cf04c59e2);
+
+
+
+        circle_marker_824b71da165c49f0629a0a1f7ca3e59c.bindPopup(popup_bea68d88c18fe4883dcf8a24173a8b8d)
+        ;
+
+
+
+
+            circle_marker_824b71da165c49f0629a0a1f7ca3e59c.bindTooltip(
+                `<div>
+                     Connellsville, PA → West Salem, OH (144.7 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_e9747b3062537b55c6b5a9d4849b91f7 = L.circleMarker(
+                [39.9, -79.72444444],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_c4dfbd25ad75787bcb4b99a7f7ca5bd0 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_51e3be9fb2056e45ab403798d3c00f10 = $(`<div id="html_51e3be9fb2056e45ab403798d3c00f10" style="width: 100.0%; height: 100.0%;">Uniontown, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (142.4 mi)</div>`)[0];
+                popup_c4dfbd25ad75787bcb4b99a7f7ca5bd0.setContent(html_51e3be9fb2056e45ab403798d3c00f10);
+
+
+
+        circle_marker_e9747b3062537b55c6b5a9d4849b91f7.bindPopup(popup_c4dfbd25ad75787bcb4b99a7f7ca5bd0)
+        ;
+
+
+
+
+            circle_marker_e9747b3062537b55c6b5a9d4849b91f7.bindTooltip(
+                `<div>
+                     Uniontown, PA → West Salem, OH (142.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+
+            var circle_marker_cae46111cfd1ea94bf4deae45cc5bae0 = L.circleMarker(
+                [39.9, -79.72444444],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_e6793dad501d327c80156ad7080b9edd);
+
+
+        var popup_0e565c91b7d3b5e38261874235351071 = L.popup({
+  "maxWidth": "100%",
+});
+
+
+
+                var html_19cea07832469bbd02819e4d2e8077eb = $(`<div id="html_19cea07832469bbd02819e4d2e8077eb" style="width: 100.0%; height: 100.0%;">Uniontown, PA<br>Outside 40 mi<br>Nearest Tech: West Salem, OH (142.4 mi)</div>`)[0];
+                popup_0e565c91b7d3b5e38261874235351071.setContent(html_19cea07832469bbd02819e4d2e8077eb);
+
+
+
+        circle_marker_cae46111cfd1ea94bf4deae45cc5bae0.bindPopup(popup_0e565c91b7d3b5e38261874235351071)
+        ;
+
+
+
+
+            circle_marker_cae46111cfd1ea94bf4deae45cc5bae0.bindTooltip(
+                `<div>
+                     Uniontown, PA → West Salem, OH (142.4 mi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+
+</script>
